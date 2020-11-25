@@ -7,15 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PodcastList: View {
+    @ObservedObject var viewModel = PodcastListViewModel(podcasts: podcastData)
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List(viewModel.podcasts) { podcast in
+            Text(podcast.name)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        PodcastList()
     }
 }
