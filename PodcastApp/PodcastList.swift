@@ -14,7 +14,7 @@ struct PodcastList: View {
         TabView {
             NavigationView {
                 List(viewModel.podcasts) { podcast in
-                    NavigationLink(destination: PodcastDetail()) {
+                    NavigationLink(destination: PodcastDetail(viewModel: PodcastDetailViewModel(podcast: podcast))) {
                         PodcastRow(podcast: podcast)
                     }
                 }

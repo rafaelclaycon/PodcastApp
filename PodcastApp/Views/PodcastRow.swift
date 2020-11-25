@@ -26,12 +26,12 @@ struct PodcastRow: View {
             }
             
             VStack(alignment: .leading) {
-                Text(podcast.name)
+                Text(podcast.title)
                     .font(.body)
                     .bold()
                     .padding(.leading, 15)
                     .padding(.bottom, 2)
-                Text(podcast.broadcaster)
+                Text(podcast.author)
                     .padding(.leading, 15)
                     .foregroundColor(.gray)
                     .font(.footnote)
@@ -46,8 +46,8 @@ struct PodcastRow: View {
 struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PodcastRow(podcast: Podcast(id: 1, name: "Praia dos Ossos", broadcaster: "Rádio Novelo", episodes: nil, feedURL: ""))
-            PodcastRow(podcast: Podcast(id: 2, name: "Accidental Tech Podcast", broadcaster: "Marco Arment, Casey Liss, John Siracusa", episodes: nil, feedURL: ""))
+            PodcastRow(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: nil, rssFeedURL: ""))
+            PodcastRow(podcast: Podcast(id: 2, title: "Accidental Tech Podcast", author: "Marco Arment, Casey Liss, John Siracusa", episodes: nil, rssFeedURL: ""))
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }

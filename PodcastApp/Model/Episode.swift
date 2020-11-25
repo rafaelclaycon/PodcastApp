@@ -11,10 +11,12 @@ struct Episode: Hashable, Codable, Identifiable {
     var id: String
     var title: String
     var releaseDate: Date?
-    
-    init(id: String, title: String, releaseDate: Date?) {
-        self.id = id
-        self.title = title
-        self.releaseDate = releaseDate
+}
+
+extension Date {
+    func asString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: self)
     }
 }

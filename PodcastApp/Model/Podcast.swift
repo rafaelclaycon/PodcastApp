@@ -9,8 +9,8 @@ import Foundation
 
 struct Podcast: Hashable, Codable, Identifiable {
     var id: Int
-    var name: String
-    var broadcaster: String
+    var title: String
+    var author: String
     var episodes: [Episode]?
-    var feedURL: String
+    var rssFeedURL: String
 }
