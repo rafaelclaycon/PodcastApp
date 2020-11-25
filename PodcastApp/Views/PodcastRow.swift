@@ -14,7 +14,7 @@ struct PodcastRow: View {
         HStack {
             ZStack {
                 Rectangle()
-                    .fill(Color.gray)
+                    .fill(Color.green)
                     .frame(width: 70, height: 70, alignment: .center)
                     .opacity(0.6)
                 

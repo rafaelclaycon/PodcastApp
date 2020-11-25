@@ -11,13 +11,18 @@ struct PodcastList: View {
     @ObservedObject var viewModel = PodcastListViewModel(podcasts: podcastData)
     
     var body: some View {
-        NavigationView {
-            List(viewModel.podcasts) { podcast in
-                NavigationLink(destination: PodcastDetail()) {
-                    PodcastRow(podcast: podcast)
+        TabView {
+            NavigationView {
+                List(viewModel.podcasts) { podcast in
+                    NavigationLink(destination: PodcastDetail()) {
+                        PodcastRow(podcast: podcast)
+                    }
                 }
+                .navigationBarTitle(Text("Podcasts 🎙"))
+            }.tabItem {
+                Image(systemName: "list.bullet")
+                Text("Podcasts")
             }
-            .navigationBarTitle(Text("Podcasts 🎙"))
         }
     }
 }
