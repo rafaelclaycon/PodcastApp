@@ -18,16 +18,27 @@ class PodcastAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGetEpisodeList() throws {
+        // Input the feed URL
+        // Make the GET request
+        
+        let e = expectation(description: "Alamofire")
+        
+        do {
+            try FeedParser.loadRSS(feedURL: "https://podcasts.apple.com/br/podcast/praia-dos-ossos/id1528797207")
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+        
+        // Catch the list
+        // Check list
     }
 
-    func testPerformanceExample() throws {
+    /*func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
-    }
+    }*/
 
 }

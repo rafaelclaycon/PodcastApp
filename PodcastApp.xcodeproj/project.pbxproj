@@ -21,6 +21,7 @@
 		D9D3DBD4256E9B540035560E /* podcasts.json in Resources */ = {isa = PBXBuildFile; fileRef = D9D3DBD3256E9B540035560E /* podcasts.json */; };
 		D9D3DBDA256E9C0D0035560E /* PodcastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBD9256E9C0D0035560E /* PodcastRow.swift */; };
 		D9D3DBE2256EA2AE0035560E /* PodcastDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBE1256EA2AE0035560E /* PodcastDetail.swift */; };
+		D9D3DBE8256EBB510035560E /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBE7256EBB510035560E /* FeedParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		D9D3DBD3256E9B540035560E /* podcasts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcasts.json; sourceTree = "<group>"; };
 		D9D3DBD9256E9C0D0035560E /* PodcastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastRow.swift; sourceTree = "<group>"; };
 		D9D3DBE1256EA2AE0035560E /* PodcastDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetail.swift; sourceTree = "<group>"; };
+		D9D3DBE7256EBB510035560E /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		D9D3DB7D256E7BC00035560E /* PodcastApp */ = {
 			isa = PBXGroup;
 			children = (
+				D9D3DBE6256EBAA40035560E /* Support */,
 				D9D3DBD8256E9BB40035560E /* Views */,
 				D9D3DBC8256E96FD0035560E /* Resources */,
 				D9D3DBBA256E8F890035560E /* Model */,
@@ -175,6 +178,14 @@
 				D9D3DBE1256EA2AE0035560E /* PodcastDetail.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D9D3DBE6256EBAA40035560E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				D9D3DBE7256EBB510035560E /* FeedParser.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 				D9D3DB81256E7BC00035560E /* PodcastList.swift in Sources */,
 				D9D3DBCD256E99BB0035560E /* Data.swift in Sources */,
 				D9D3DBB3256E8EB80035560E /* PodcastListViewModel.swift in Sources */,
+				D9D3DBE8256EBB510035560E /* FeedParser.swift in Sources */,
 				D9D3DBBC256E8F930035560E /* Podcast.swift in Sources */,
 				D9D3DBC4256E92B40035560E /* Episode.swift in Sources */,
 				D9D3DB7F256E7BC00035560E /* PodcastAppApp.swift in Sources */,
