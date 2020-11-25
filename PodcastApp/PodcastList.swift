@@ -11,8 +11,13 @@ struct PodcastList: View {
     @ObservedObject var viewModel = PodcastListViewModel(podcasts: podcastData)
     
     var body: some View {
-        List(viewModel.podcasts) { podcast in
-            Text(podcast.name)
+        NavigationView {
+            List(viewModel.podcasts) { podcast in
+                NavigationLink(destination: PodcastDetail()) {
+                    PodcastRow(podcast: podcast)
+                }
+            }
+            .navigationBarTitle(Text("Podcasts 🎙"))
         }
     }
 }
