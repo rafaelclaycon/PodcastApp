@@ -12,5 +12,8 @@ class PodcastListViewModel: ObservableObject {
     
     init(podcasts: [Podcast]) {
         self.podcasts = podcasts
+        self.podcasts.sort {
+            $0.name < $1.name
+        }
     }
 }

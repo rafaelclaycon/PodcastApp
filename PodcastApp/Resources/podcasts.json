@@ -4,5 +4,59 @@
         "name": "Praia dos Ossos",
         "broadcaster": "Rádio Novelo",
         "feedURL": "https://podcasts.apple.com/br/podcast/praia-dos-ossos/id1528797207"
+    },
+    {
+        "id": 430333725,
+        "name": "The Vergecast",
+        "broadcaster": "The Verge",
+        "feedURL": "https://podcasts.apple.com/br/podcast/the-vergecast/id430333725"
+    },
+    {
+        "id": 916378162,
+        "name": "Um Milkshake Chamado Wanda",
+        "broadcaster": "Papelpop",
+        "feedURL": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=916378162"
+    },
+    {
+        "id": 617416468,
+        "name": "Accidental Tech Podcast",
+        "broadcaster": "Marco Arment, Casey Liss, John Siracusa",
+        "feedURL": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=617416468"
+    },
+    {
+        "id": 1503346494,
+        "name": "Diário de Bordo",
+        "broadcaster": "Jessica Greco e Leandro Neko",
+        "feedURL": "https://podcasts.apple.com/br/podcast/di%C3%A1rio-de-bordo/id1503346494"
+    },
+    {
+        "id": 1308576884,
+        "name": "Imagina Juntas",
+        "broadcaster": "Half Deaf",
+        "feedURL": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=1308576884"
+    },
+    {
+        "id": 1384660882,
+        "name": "Foro de Teresina",
+        "broadcaster": "Revista Piauí",
+        "feedURL": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=1384660882"
+    },
+    {
+        "id": 1515150794,
+        "name": "Popcult",
+        "broadcaster": "Half Deaf",
+        "feedURL": "https://podcasts.apple.com/br/podcast/popcult/id1515150794"
+    },
+    {
+        "id": 1437854482,
+        "name": "Estação 21",
+        "broadcaster": "Estação 21",
+        "feedURL": "https://podcasts.apple.com/br/podcast/esta%C3%A7%C3%A3o-21/id1437854482"
+    },
+    {
+        "id": 1187454543,
+        "name": "Área de Transferência",
+        "broadcaster": "Superplayer & Co",
+        "feedURL": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=1187454543"
     }
 ]
