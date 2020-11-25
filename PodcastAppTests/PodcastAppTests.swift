@@ -18,20 +18,24 @@ class PodcastAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testGetEpisodeList() throws {
-        // Input the feed URL
-        // Make the GET request
-        
-        let e = expectation(description: "Alamofire")
-        
+    func testGetEpisodeListAndCheckCount() throws {
         do {
-            try FeedParser.loadRSS(feedURL: "https://podcasts.apple.com/br/podcast/praia-dos-ossos/id1528797207")
+            let episodes = try FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss")
+            
+            XCTAssertEqual(episodes.count, 9)
         } catch {
             XCTFail(error.localizedDescription)
         }
-        
-        // Catch the list
-        // Check list
+    }
+    
+    func testGetFirstPraiaDosOssosEpisodeAndCheckItsTitle() throws {
+        do {
+            let episodes = try FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss")
+            
+            XCTAssertEqual(episodes.first?.title, "8. Rua Ângela Diniz")
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
     }
 
     /*func testPerformanceExample() throws {

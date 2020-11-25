@@ -8,7 +8,13 @@
 import Foundation
 
 struct Episode: Hashable, Codable, Identifiable {
-    var id: Int
-    var name: String
-    var releaseDate: Date
+    var id: String
+    var title: String
+    var releaseDate: Date?
+    
+    init(id: String, title: String, releaseDate: Date?) {
+        self.id = id
+        self.title = title
+        self.releaseDate = releaseDate
+    }
 }
