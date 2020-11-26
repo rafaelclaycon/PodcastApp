@@ -22,18 +22,18 @@ class PodcastAppTests: XCTestCase {
         let e = expectation(description: "Feed load")
         var episodes = [Episode]()
         
-        FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss") { result, error in
+        FeedHelper.fetchEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss") { result, error in
             guard error == nil else {
-                XCTFail(error!.localizedDescription)
+                return XCTFail(error!.localizedDescription)
             }
             
             switch result {
             case .success(let feed):
                 guard let feed = feed.rssFeed else {
-                    XCTFail("Not an RSS Feed.")
+                    return XCTFail("Not an RSS Feed.")
                 }
                 guard let items = feed.items else {
-                    XCTFail("Empty feed.")
+                    return XCTFail("Empty feed.")
                 }
                 
                 for item in items {
@@ -49,17 +49,50 @@ class PodcastAppTests: XCTestCase {
             }
         }
         
-        waitForExpectations(timeout: 5.0, handler: nil)
-        XCTAssertEqual(episodes.count, 9)
+        waitForExpectations(timeout: 5.0) { error in
+            if let error = error {
+                XCTFail("timeout errored: \(error)")
+            }
+            XCTAssertEqual(episodes.count, 9)
+        }
     }
     
     func testGetFirstPraiaDosOssosEpisodeAndCheckItsTitle() throws {
-        do {
-            let episodes = try FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss")
+        let e = expectation(description: "Feed load")
+        var episodes = [Episode]()
+        
+        FeedHelper.fetchEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss") { result, error in
+            guard error == nil else {
+                return XCTFail(error!.localizedDescription)
+            }
             
+            switch result {
+            case .success(let feed):
+                guard let feed = feed.rssFeed else {
+                    return XCTFail("Not an RSS Feed.")
+                }
+                guard let items = feed.items else {
+                    return XCTFail("Empty feed.")
+                }
+                
+                for item in items {
+                    episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                }
+                
+                e.fulfill()
+                
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            case .none:
+                XCTFail("None")
+            }
+        }
+        
+        waitForExpectations(timeout: 5.0) { error in
+            if let error = error {
+                XCTFail("timeout errored: \(error)")
+            }
             XCTAssertEqual(episodes.first?.title, "8. Rua Ângela Diniz")
-        } catch {
-            XCTFail(error.localizedDescription)
         }
     }
 

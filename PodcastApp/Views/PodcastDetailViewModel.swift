@@ -19,7 +19,7 @@ class PodcastDetailViewModel: ObservableObject {
         self.author = podcast.author
         self.feedIsEmpty = podcast.episodes != nil
         
-        FeedHelper.getEpisodeList(feedURL: podcast.rssFeedURL) { result, error in
+        FeedHelper.fetchEpisodeList(feedURL: podcast.rssFeedURL) { result, error in
             guard error == nil else {
                 fatalError(error!.localizedDescription)
             }
@@ -38,7 +38,7 @@ class PodcastDetailViewModel: ObservableObject {
                 }
                 
             case .failure(let error):
-                fatalError(error.localizedDescription)
+                print(error.localizedDescription)
             case .none:
                 fatalError("None")
             }

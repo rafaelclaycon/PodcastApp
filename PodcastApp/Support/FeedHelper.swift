@@ -9,7 +9,7 @@ import Foundation
 import FeedKit
 
 class FeedHelper {
-    static func getEpisodeList(feedURL: String, completionHandler: @escaping (Result<Feed, ParserError>?, FeedHelperError?) -> Void) {
+    static func fetchEpisodeList(feedURL: String, completionHandler: @escaping (Result<Feed, ParserError>?, FeedHelperError?) -> Void) {
         guard feedURL != "" else {
             return completionHandler(nil, .emptyURL)
         }
