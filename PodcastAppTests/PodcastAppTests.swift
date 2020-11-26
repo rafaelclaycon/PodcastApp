@@ -95,6 +95,10 @@ class PodcastAppTests: XCTestCase {
             XCTAssertEqual(episodes.first?.title, "8. Rua Ângela Diniz")
         }
     }
+    
+    func testFetchPodcastArtwork() throws {
+        
+    }
 
     /*func testPerformanceExample() throws {
         // This is an example of a performance test case.

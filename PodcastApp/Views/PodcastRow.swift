@@ -6,24 +6,35 @@
 //
 
 import SwiftUI
+import KingfisherSwiftUI
 
 struct PodcastRow: View {
     var podcast: Podcast
     
     var body: some View {
         HStack {
-            ZStack {
-                Rectangle()
-                    .fill(Color.green)
-                    .frame(width: 70, height: 70, alignment: .center)
-                    .opacity(0.6)
-                
-                Text("P")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.white)
-                    .opacity(0.8)
-            }
+            KFImage(URL(string: podcast.artworkURL))
+                .onSuccess { r in
+                    print("success: \(r)")
+                }
+                .onFailure { e in
+                    print("failure: \(e)")
+                }
+                .placeholder {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: 70, height: 70)
+                            .opacity(0.6)
+
+                        Image(systemName: "waveform")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.white)
+                    }
+                }
+                .resizable()
+                .frame(width: 70, height: 70)
             
             VStack(alignment: .leading) {
                 Text(podcast.title)
@@ -46,8 +57,8 @@ struct PodcastRow: View {
 struct PodcastRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PodcastRow(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: nil, rssFeedURL: ""))
-            PodcastRow(podcast: Podcast(id: 2, title: "Accidental Tech Podcast", author: "Marco Arment, Casey Liss, John Siracusa", episodes: nil, rssFeedURL: ""))
+            PodcastRow(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: nil, feedURL: "", artworkURL: ""))
+            PodcastRow(podcast: Podcast(id: 2, title: "Accidental Tech Podcast", author: "Marco Arment, Casey Liss, John Siracusa", episodes: nil, feedURL: "", artworkURL: ""))
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }

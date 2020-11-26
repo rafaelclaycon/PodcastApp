@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		D92A44BE256EF7F900731EEF /* EpisodeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92A44BD256EF7F900731EEF /* EpisodeRow.swift */; };
 		D92A44C3256F0B6B00731EEF /* PodcastDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92A44C2256F0B6B00731EEF /* PodcastDetailViewModel.swift */; };
+		D95EF9E525705F0F00D03D4F /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D95EF9E425705F0F00D03D4F /* KingfisherSwiftUI */; };
 		D9D3DB7F256E7BC00035560E /* PodcastAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB7E256E7BC00035560E /* PodcastAppApp.swift */; };
 		D9D3DB81256E7BC00035560E /* PodcastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB80256E7BC00035560E /* PodcastList.swift */; };
 		D9D3DB83256E7BC30035560E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D3DB82256E7BC30035560E /* Assets.xcassets */; };
 		D9D3DB86256E7BC30035560E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D3DB85256E7BC30035560E /* Preview Assets.xcassets */; };
 		D9D3DB91256E7BC30035560E /* PodcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB90256E7BC30035560E /* PodcastAppTests.swift */; };
 		D9D3DB9C256E7BC30035560E /* PodcastAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB9B256E7BC30035560E /* PodcastAppUITests.swift */; };
-		D9D3DBAE256E89C80035560E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D9D3DBAD256E89C80035560E /* Alamofire */; };
 		D9D3DBB3256E8EB80035560E /* PodcastListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBB2256E8EB80035560E /* PodcastListViewModel.swift */; };
 		D9D3DBBC256E8F930035560E /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBBB256E8F930035560E /* Podcast.swift */; };
 		D9D3DBC4256E92B40035560E /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBC3256E92B40035560E /* Episode.swift */; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9D3DBAE256E89C80035560E /* Alamofire in Frameworks */,
+				D95EF9E525705F0F00D03D4F /* KingfisherSwiftUI in Frameworks */,
 				D9D3DBF1256EE9760035560E /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,8 +213,8 @@
 			);
 			name = PodcastApp;
 			packageProductDependencies = (
-				D9D3DBAD256E89C80035560E /* Alamofire */,
 				D9D3DBF0256EE9760035560E /* FeedKit */,
+				D95EF9E425705F0F00D03D4F /* KingfisherSwiftUI */,
 			);
 			productName = PodcastApp;
 			productReference = D9D3DB7B256E7BC00035560E /* PodcastApp.app */;
@@ -288,8 +288,8 @@
 			);
 			mainGroup = D9D3DB72256E7BC00035560E;
 			packageReferences = (
-				D9D3DBAC256E89C80035560E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D9D3DBEF256EE9760035560E /* XCRemoteSwiftPackageReference "FeedKit" */,
+				D95EF9E325705F0F00D03D4F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D9D3DB7C256E7BC00035560E /* Products */;
 			projectDirPath = "";
@@ -666,12 +666,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D9D3DBAC256E89C80035560E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		D95EF9E325705F0F00D03D4F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.0;
+				minimumVersion = 5.15.7;
 			};
 		};
 		D9D3DBEF256EE9760035560E /* XCRemoteSwiftPackageReference "FeedKit" */ = {
@@ -685,10 +685,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D9D3DBAD256E89C80035560E /* Alamofire */ = {
+		D95EF9E425705F0F00D03D4F /* KingfisherSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D9D3DBAC256E89C80035560E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = D95EF9E325705F0F00D03D4F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherSwiftUI;
 		};
 		D9D3DBF0256EE9760035560E /* FeedKit */ = {
 			isa = XCSwiftPackageProductDependency;

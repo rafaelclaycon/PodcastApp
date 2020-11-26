@@ -19,7 +19,7 @@ class PodcastDetailViewModel: ObservableObject {
         self.author = podcast.author
         self.feedIsEmpty = podcast.episodes != nil
         
-        FeedHelper.fetchEpisodeList(feedURL: podcast.rssFeedURL) { result, error in
+        FeedHelper.fetchEpisodeList(feedURL: podcast.feedURL) { result, error in
             guard error == nil else {
                 fatalError(error!.localizedDescription)
             }
@@ -33,8 +33,10 @@ class PodcastDetailViewModel: ObservableObject {
                     fatalError("Empty feed.")
                 }
                 
-                for item in items {
-                    self.episodes?.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                DispatchQueue.main.async {
+                    for item in items {
+                        self.episodes?.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                    }
                 }
                 
             case .failure(let error):

@@ -3,60 +3,63 @@
         "id": 1528797207,
         "title": "Praia dos Ossos",
         "author": "Rádio Novelo",
-        "rssFeedURL": "https://praiadosossos.libsyn.com/rss"
+        "feedURL": "https://praiadosossos.libsyn.com/rss",
+        "artworkURL": "https://ssl-static.libsyn.com/p/assets/d/d/5/f/dd5fd63eeb3134c8/podcastpraiadosossos.jpg"
     },
     {
         "id": 430333725,
         "title": "The Vergecast",
         "author": "The Verge",
-        "rssFeedURL": "https://feeds.megaphone.fm/vergecast"
+        "feedURL": "https://feeds.megaphone.fm/vergecast",
+        "artworkURL": "https://images.megaphone.fm/TxQGmVHSJLu_4SfqdsIT1uUQ2xrv7XAS3oixU70WYD4/plain/s3://megaphone-prod/podcasts/e4c412e6-e1f0-11e8-9bde-83f9d376f059/image/uploads_2F1567105071975-o6k62rq8bin-247a9596590486c06b16976bed1cefbc_2FVergecast_Tile_3000x3000.png"
     },
     {
         "id": 916378162,
         "title": "Um Milkshake Chamado Wanda",
         "author": "Papelpop",
-        "rssFeedURL": "http://feeds.soundcloud.com/users/soundcloud:users:110149054/sounds.rss"
+        "feedURL": "http://feeds.soundcloud.com/users/soundcloud:users:110149054/sounds.rss",
+        "artworkURL": "http://i1.sndcdn.com/avatars-l7UAPy4c6vYw4Uzb-zLzBYw-original.jpg"
     },
     {
         "id": 617416468,
         "title": "Accidental Tech Podcast",
         "author": "Marco Arment, Casey Liss, John Siracusa",
-        "rssFeedURL": "https://atp.fm/episodes?format=rss"
+        "feedURL": "https://atp.fm/episodes?format=rss",
+        "artworkURL": "https://atp.fm/content/artwork.jpg"
     },
     {
         "id": 1503346494,
         "title": "Diário de Bordo",
         "author": "Jessica Greco e Leandro Neko",
-        "rssFeedURL": "https://anchor.fm/s/16cc106c/podcast/rss"
-    },
-    {
-        "id": 1308576884,
-        "title": "Imagina Juntas",
-        "author": "Half Deaf",
-        "rssFeedURL": "https://www.spreaker.com/show/2929952/episodes/feed"
+        "feedURL": "https://anchor.fm/s/16cc106c/podcast/rss",
+        "artworkURL": "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/3724723/3724723-1601651712372-31cc8f3849172.jpg"
     },
     {
         "id": 1384660882,
         "title": "Foro de Teresina",
         "author": "Revista Piauí",
-        "rssFeedURL": "https://forodeteresina.libsyn.com/rss"
+        "feedURL": "https://forodeteresina.libsyn.com/rss",
+        "artworkURL": "https://ssl-static.libsyn.com/p/assets/1/4/4/a/144abc0114efac02/foro_quadrado.jpg"
     },
     {
         "id": 1515150794,
         "title": "Popcult",
         "author": "Half Deaf",
-        "rssFeedURL": "https://www.spreaker.com/show/4416630/episodes/feed"
+        "feedURL": "https://www.spreaker.com/show/4416630/episodes/feed",
+        "artworkURL": "https://d3wo5wojvuv7l.cloudfront.net/t_rss_itunes_square_1400/images.spreaker.com/original/a7ec419f0b2e7a3f54701fdda8367890.jpg"
     },
     {
         "id": 1437854482,
         "title": "Estação 21",
         "author": "Estação 21",
-        "rssFeedURL": "https://anchor.fm/s/138b3a90/podcast/rss"
+        "feedURL": "https://anchor.fm/s/138b3a90/podcast/rss",
+        "artworkURL": "https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_nologo/3178916/3178916-1600107820102-0e59d364c2422.jpg"
     },
     {
         "id": 1187454543,
         "title": "Área de Transferência",
         "author": "Superplayer & Co",
-        "rssFeedURL": "https://feeds.fireside.fm/adt/rss"
+        "feedURL": "https://feeds.fireside.fm/adt/rss",
+        "artworkURL": "https://assets.fireside.fm/file/fireside-images/podcasts/images/5/5b523b2c-c7d6-4b0c-b823-2e5d5409cf35/cover.jpg?v=2"
     }
 ]

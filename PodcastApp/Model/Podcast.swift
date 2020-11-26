@@ -12,5 +12,6 @@ struct Podcast: Hashable, Codable, Identifiable {
     var title: String
     var author: String
     var episodes: [Episode]?
-    var rssFeedURL: String
+    var feedURL: String
+    var artworkURL: String
 }

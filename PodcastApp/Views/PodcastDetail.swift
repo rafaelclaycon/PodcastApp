@@ -24,17 +24,17 @@ struct PodcastDetail: View {
             .padding()
             .padding(.leading)
             
-            if !viewModel.feedIsEmpty {
-                List(viewModel.episodes!) { episode in
-                    EpisodeRow(episode: episode)
-                }
-            }
+//            if !viewModel.feedIsEmpty {
+//                List(viewModel.episodes!) { episode in
+//                    EpisodeRow(episode: episode)
+//                }
+//            }
         }
     }
 }
 
 struct PodcastDetail_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastDetail(viewModel: PodcastDetailViewModel(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: [Episode(id: "1", title: "Flat-Side Promoter", releaseDate: Date()), Episode(id: "2", title: "With Four Hands Tied Behind Its Back", releaseDate: Date())], rssFeedURL: "")))
+        PodcastDetail(viewModel: PodcastDetailViewModel(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: [Episode(id: "1", title: "Flat-Side Promoter", releaseDate: Date()), Episode(id: "2", title: "With Four Hands Tied Behind Its Back", releaseDate: Date())], feedURL: "", artworkURL: "")))
     }
 }
