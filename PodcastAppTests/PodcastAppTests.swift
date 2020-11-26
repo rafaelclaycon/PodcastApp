@@ -19,8 +19,12 @@ class PodcastAppTests: XCTestCase {
     }
 
     func testGetEpisodeListAndCheckCount() throws {
+        let e = expectation(description: "Feed load")
+        
         do {
             let episodes = try FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss")
+            
+            
             
             XCTAssertEqual(episodes.count, 9)
         } catch {

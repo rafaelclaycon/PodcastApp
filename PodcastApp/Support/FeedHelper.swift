@@ -9,7 +9,7 @@ import Foundation
 import FeedKit
 
 class FeedHelper {
-    static func getEpisodeList(feedURL: String) throws -> [Episode] {
+    static func getEpisodeList(feedURL: String, completionHandler: ((String?) -> Void)?) throws -> [Episode] {
         guard feedURL != "" else {
             throw FeedParserError.emptyURL
         }
@@ -20,28 +20,26 @@ class FeedHelper {
         
         let parser = FeedParser(URL: url)
         
-        let result = parser.parse()
-        
-        switch result {
-        case .success(let feed):
-            guard let feed = feed.rssFeed else {
-                throw FeedParserError.notAnRSSFeed
+        let result = parser.parseAsync { result in
+            switch result {
+            case .success(let feed):
+                guard let feed = feed.rssFeed else {
+                    throw FeedParserError.notAnRSSFeed
+                }
+                guard let items = feed.items else {
+                    throw FeedParserError.emptyFeed
+                }
+                
+                for item in items {
+                    episodes.append(self.getEpisodeFrom(rssFeedItem: item))
+                }
+                
+                return episodes
+                
+            case .failure(let error):
+                print(error)
             }
-            guard let items = feed.items else {
-                throw FeedParserError.emptyFeed
-            }
-            
-            for item in items {
-                episodes.append(self.getEpisodeFrom(rssFeedItem: item))
-            }
-            
-            return episodes
-            
-        case .failure(let error):
-            print(error)
         }
-        
-        return episodes
     }
     
     static func getEpisodeFrom(rssFeedItem item: RSSFeedItem) -> Episode {
