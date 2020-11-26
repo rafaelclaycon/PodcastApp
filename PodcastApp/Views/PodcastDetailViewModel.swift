@@ -18,10 +18,30 @@ class PodcastDetailViewModel: ObservableObject {
         self.title = podcast.title
         self.author = podcast.author
         self.feedIsEmpty = podcast.episodes != nil
-        do {
-            self.episodes = try FeedHelper.getEpisodeList(feedURL: podcast.rssFeedURL)
-        } catch {
-            print(error.localizedDescription)
+        
+        FeedHelper.getEpisodeList(feedURL: podcast.rssFeedURL) { result, error in
+            guard error == nil else {
+                fatalError(error!.localizedDescription)
+            }
+            
+            switch result {
+            case .success(let feed):
+                guard let feed = feed.rssFeed else {
+                    fatalError("Not an RSS Feed.")
+                }
+                guard let items = feed.items else {
+                    fatalError("Empty feed.")
+                }
+                
+                for item in items {
+                    self.episodes?.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                }
+                
+            case .failure(let error):
+                fatalError(error.localizedDescription)
+            case .none:
+                fatalError("None")
+            }
         }
     }
 }

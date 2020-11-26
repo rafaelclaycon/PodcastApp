@@ -20,16 +20,37 @@ class PodcastAppTests: XCTestCase {
 
     func testGetEpisodeListAndCheckCount() throws {
         let e = expectation(description: "Feed load")
+        var episodes = [Episode]()
         
-        do {
-            let episodes = try FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss")
+        FeedHelper.getEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss") { result, error in
+            guard error == nil else {
+                XCTFail(error!.localizedDescription)
+            }
             
-            
-            
-            XCTAssertEqual(episodes.count, 9)
-        } catch {
-            XCTFail(error.localizedDescription)
+            switch result {
+            case .success(let feed):
+                guard let feed = feed.rssFeed else {
+                    XCTFail("Not an RSS Feed.")
+                }
+                guard let items = feed.items else {
+                    XCTFail("Empty feed.")
+                }
+                
+                for item in items {
+                    episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                }
+                
+                e.fulfill()
+                
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            case .none:
+                XCTFail("None")
+            }
         }
+        
+        waitForExpectations(timeout: 5.0, handler: nil)
+        XCTAssertEqual(episodes.count, 9)
     }
     
     func testGetFirstPraiaDosOssosEpisodeAndCheckItsTitle() throws {

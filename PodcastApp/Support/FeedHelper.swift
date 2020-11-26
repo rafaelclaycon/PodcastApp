@@ -9,36 +9,16 @@ import Foundation
 import FeedKit
 
 class FeedHelper {
-    static func getEpisodeList(feedURL: String, completionHandler: ((String?) -> Void)?) throws -> [Episode] {
+    static func getEpisodeList(feedURL: String, completionHandler: @escaping (Result<Feed, ParserError>?, FeedHelperError?) -> Void) {
         guard feedURL != "" else {
-            throw FeedParserError.emptyURL
+            return completionHandler(nil, .emptyURL)
         }
         
-        var episodes = [Episode]()
-        
         let url = URL(string: feedURL)!
-        
         let parser = FeedParser(URL: url)
         
-        let result = parser.parseAsync { result in
-            switch result {
-            case .success(let feed):
-                guard let feed = feed.rssFeed else {
-                    throw FeedParserError.notAnRSSFeed
-                }
-                guard let items = feed.items else {
-                    throw FeedParserError.emptyFeed
-                }
-                
-                for item in items {
-                    episodes.append(self.getEpisodeFrom(rssFeedItem: item))
-                }
-                
-                return episodes
-                
-            case .failure(let error):
-                print(error)
-            }
+        parser.parseAsync { result in
+            completionHandler(result, nil)
         }
     }
     
@@ -48,7 +28,7 @@ class FeedHelper {
     }
 }
 
-enum FeedParserError: Error {
+enum FeedHelperError: Error {
     case emptyURL
     case parsingError
     case notAnRSSFeed
