@@ -11,14 +11,13 @@ import Combine
 class PodcastDetailViewModel: ObservableObject {
     @Published var title: String
     @Published var author: String
-    @Published var episodes: [Episode]?
-    @Published var feedIsEmpty: Bool
+    @Published var episodes = [Episode]()
+    @Published var displayEpisodeList: Bool = false
     @Published var artworkURL: String
     
     init(podcast: Podcast) {
         self.title = podcast.title
         self.author = podcast.author
-        self.feedIsEmpty = podcast.episodes != nil
         self.artworkURL = podcast.artworkURL
         
         FeedHelper.fetchEpisodeList(feedURL: podcast.feedURL) { result, error in
@@ -37,8 +36,9 @@ class PodcastDetailViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     for item in items {
-                        self.episodes?.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                        self.episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
                     }
+                    self.displayEpisodeList = true
                 }
                 
             case .failure(let error):

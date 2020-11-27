@@ -54,11 +54,11 @@ struct PodcastDetail: View {
             }
             .padding()
             
-//            if !viewModel.feedIsEmpty {
-//                List(viewModel.episodes!) { episode in
-//                    EpisodeRow(episode: episode)
-//                }
-//            }
+            if viewModel.displayEpisodeList {
+                List(viewModel.episodes) { episode in
+                    EpisodeRow(episode: episode)
+                }
+            }
             
             Spacer()
         }

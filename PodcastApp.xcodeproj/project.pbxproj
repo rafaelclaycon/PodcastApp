@@ -25,6 +25,7 @@
 		D9D3DBE2256EA2AE0035560E /* PodcastDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBE1256EA2AE0035560E /* PodcastDetail.swift */; };
 		D9D3DBE8256EBB510035560E /* FeedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBE7256EBB510035560E /* FeedHelper.swift */; };
 		D9D3DBF1256EE9760035560E /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9D3DBF0256EE9760035560E /* FeedKit */; };
+		D9E703F72570AE8600D4D16E /* SwiftySound in Frameworks */ = {isa = PBXBuildFile; productRef = D9E703F62570AE8600D4D16E /* SwiftySound */; };
 		D9EF7344257094FF00FC1C53 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF7343257094FF00FC1C53 /* FilterView.swift */; };
 		D9EF73492570953500FC1C53 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF73482570953500FC1C53 /* DiscoverView.swift */; };
 		D9EF734E2570954F00FC1C53 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF734D2570954F00FC1C53 /* ProfileView.swift */; };
@@ -81,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D95EF9E525705F0F00D03D4F /* KingfisherSwiftUI in Frameworks */,
+				D9E703F72570AE8600D4D16E /* SwiftySound in Frameworks */,
 				D9D3DBF1256EE9760035560E /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,8 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				D9D3DBD9256E9C0D0035560E /* PodcastRow.swift */,
-				D9D3DBE1256EA2AE0035560E /* PodcastDetail.swift */,
 				D92A44BD256EF7F900731EEF /* EpisodeRow.swift */,
+				D9D3DBE1256EA2AE0035560E /* PodcastDetail.swift */,
 				D92A44C2256F0B6B00731EEF /* PodcastDetailViewModel.swift */,
 				D9EF7343257094FF00FC1C53 /* FilterView.swift */,
 				D9EF73482570953500FC1C53 /* DiscoverView.swift */,
@@ -224,6 +226,7 @@
 			packageProductDependencies = (
 				D9D3DBF0256EE9760035560E /* FeedKit */,
 				D95EF9E425705F0F00D03D4F /* KingfisherSwiftUI */,
+				D9E703F62570AE8600D4D16E /* SwiftySound */,
 			);
 			productName = PodcastApp;
 			productReference = D9D3DB7B256E7BC00035560E /* PodcastApp.app */;
@@ -299,6 +302,7 @@
 			packageReferences = (
 				D9D3DBEF256EE9760035560E /* XCRemoteSwiftPackageReference "FeedKit" */,
 				D95EF9E325705F0F00D03D4F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D9E703F52570AE8600D4D16E /* XCRemoteSwiftPackageReference "SwiftySound" */,
 			);
 			productRefGroup = D9D3DB7C256E7BC00035560E /* Products */;
 			projectDirPath = "";
@@ -694,6 +698,14 @@
 				minimumVersion = 9.1.2;
 			};
 		};
+		D9E703F52570AE8600D4D16E /* XCRemoteSwiftPackageReference "SwiftySound" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamcichy/SwiftySound";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -706,6 +718,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9D3DBEF256EE9760035560E /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
+		};
+		D9E703F62570AE8600D4D16E /* SwiftySound */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9E703F52570AE8600D4D16E /* XCRemoteSwiftPackageReference "SwiftySound" */;
+			productName = SwiftySound;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
