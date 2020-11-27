@@ -9,14 +9,16 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        List {
-            HStack {
-                Image(systemName: "number.circle")
-                    .foregroundColor(.blue)
-                Text("Stats")
-                Spacer()
-            }
-        }.navigationBarTitle(Text("Profile"))
+        NavigationView {
+            List {
+                HStack {
+                    Image(systemName: "number.circle")
+                        .foregroundColor(.blue)
+                    Text("Stats")
+                    Spacer()
+                }
+            }.navigationBarTitle(Text("Profile"))
+        }
     }
 }
 

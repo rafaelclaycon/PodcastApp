@@ -9,19 +9,21 @@ import SwiftUI
 
 struct FilterView: View {
     var body: some View {
-        List {
-            HStack {
-                Image(systemName: "clock")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.red)
-                    .padding()
-                
-                Text("New Releases")
-                
-                Spacer()
-            }
-        }.navigationBarTitle(Text("Filters"))
+        NavigationView {
+            List {
+                HStack {
+                    Image(systemName: "clock")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.red)
+                        .padding()
+                    
+                    Text("New Releases")
+                    
+                    Spacer()
+                }
+            }.navigationBarTitle(Text("Filters"))
+        }
     }
 }
 

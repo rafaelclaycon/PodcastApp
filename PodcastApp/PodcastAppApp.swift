@@ -11,7 +11,7 @@ import SwiftUI
 struct PodcastAppApp: App {
     var body: some Scene {
         WindowGroup {
-            PodcastList()
+            MainView()
         }
     }
 }

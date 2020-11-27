@@ -9,20 +9,22 @@ import SwiftUI
 
 struct DiscoverView: View {
     var body: some View {
-        VStack {
-            ScrollView(.horizontal) {
-                Text("Podcast A")
-                    .padding()
+        NavigationView {
+            VStack {
+                ScrollView(.horizontal) {
+                    Text("Podcast A")
+                        .padding()
+                    
+                    Text("Podcast B")
+                        .padding()
+                    
+                    Text("Podcast C")
+                        .padding()
+                }
                 
-                Text("Podcast B")
-                    .padding()
-                
-                Text("Podcast C")
-                    .padding()
-            }
-            
-            Spacer()
-        }.navigationBarTitle(Text("Discover"))
+                Spacer()
+            }.navigationBarTitle(Text("Discover"))
+        }
     }
 }
 
