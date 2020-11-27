@@ -18,7 +18,6 @@
 		D9D3DB83256E7BC30035560E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D3DB82256E7BC30035560E /* Assets.xcassets */; };
 		D9D3DB86256E7BC30035560E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D3DB85256E7BC30035560E /* Preview Assets.xcassets */; };
 		D9D3DB91256E7BC30035560E /* PodcastAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB90256E7BC30035560E /* PodcastAppTests.swift */; };
-		D9D3DB9C256E7BC30035560E /* PodcastAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB9B256E7BC30035560E /* PodcastAppUITests.swift */; };
 		D9D3DBB3256E8EB80035560E /* PodcastListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBB2256E8EB80035560E /* PodcastListViewModel.swift */; };
 		D9D3DBBC256E8F930035560E /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBBB256E8F930035560E /* Podcast.swift */; };
 		D9D3DBC4256E92B40035560E /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DBC3256E92B40035560E /* Episode.swift */; };
@@ -42,13 +41,6 @@
 			remoteGlobalIDString = D9D3DB7A256E7BC00035560E;
 			remoteInfo = PodcastApp;
 		};
-		D9D3DB98256E7BC30035560E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9D3DB73256E7BC00035560E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D9D3DB7A256E7BC00035560E;
-			remoteInfo = PodcastApp;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +58,6 @@
 		D9D3DB8C256E7BC30035560E /* PodcastAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D3DB90256E7BC30035560E /* PodcastAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAppTests.swift; sourceTree = "<group>"; };
 		D9D3DB92256E7BC30035560E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9D3DB97256E7BC30035560E /* PodcastAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9D3DB9B256E7BC30035560E /* PodcastAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAppUITests.swift; sourceTree = "<group>"; };
-		D9D3DB9D256E7BC30035560E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9D3DBB2256E8EB80035560E /* PodcastListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastListViewModel.swift; sourceTree = "<group>"; };
 		D9D3DBBB256E8F930035560E /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		D9D3DBC3256E92B40035560E /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -100,13 +89,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9D3DB94256E7BC30035560E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -115,7 +97,6 @@
 			children = (
 				D9D3DB7D256E7BC00035560E /* PodcastApp */,
 				D9D3DB8F256E7BC30035560E /* PodcastAppTests */,
-				D9D3DB9A256E7BC30035560E /* PodcastAppUITests */,
 				D9D3DB7C256E7BC00035560E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,7 +106,6 @@
 			children = (
 				D9D3DB7B256E7BC00035560E /* PodcastApp.app */,
 				D9D3DB8C256E7BC30035560E /* PodcastAppTests.xctest */,
-				D9D3DB97256E7BC30035560E /* PodcastAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,15 +142,6 @@
 				D9D3DB92256E7BC30035560E /* Info.plist */,
 			);
 			path = PodcastAppTests;
-			sourceTree = "<group>";
-		};
-		D9D3DB9A256E7BC30035560E /* PodcastAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D9D3DB9B256E7BC30035560E /* PodcastAppUITests.swift */,
-				D9D3DB9D256E7BC30035560E /* Info.plist */,
-			);
-			path = PodcastAppUITests;
 			sourceTree = "<group>";
 		};
 		D9D3DBBA256E8F890035560E /* Model */ = {
@@ -259,24 +230,6 @@
 			productReference = D9D3DB8C256E7BC30035560E /* PodcastAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D9D3DB96256E7BC30035560E /* PodcastAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D9D3DBA6256E7BC30035560E /* Build configuration list for PBXNativeTarget "PodcastAppUITests" */;
-			buildPhases = (
-				D9D3DB93256E7BC30035560E /* Sources */,
-				D9D3DB94256E7BC30035560E /* Frameworks */,
-				D9D3DB95256E7BC30035560E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D9D3DB99256E7BC30035560E /* PBXTargetDependency */,
-			);
-			name = PodcastAppUITests;
-			productName = PodcastAppUITests;
-			productReference = D9D3DB97256E7BC30035560E /* PodcastAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -290,10 +243,6 @@
 						CreatedOnToolsVersion = 12.2;
 					};
 					D9D3DB8B256E7BC30035560E = {
-						CreatedOnToolsVersion = 12.2;
-						TestTargetID = D9D3DB7A256E7BC00035560E;
-					};
-					D9D3DB96256E7BC30035560E = {
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = D9D3DB7A256E7BC00035560E;
 					};
@@ -319,7 +268,6 @@
 			targets = (
 				D9D3DB7A256E7BC00035560E /* PodcastApp */,
 				D9D3DB8B256E7BC30035560E /* PodcastAppTests */,
-				D9D3DB96256E7BC30035560E /* PodcastAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -337,13 +285,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D9D3DB8A256E7BC30035560E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9D3DB95256E7BC30035560E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -384,14 +325,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9D3DB93256E7BC30035560E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9D3DB9C256E7BC30035560E /* PodcastAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -399,11 +332,6 @@
 			isa = PBXTargetDependency;
 			target = D9D3DB7A256E7BC00035560E /* PodcastApp */;
 			targetProxy = D9D3DB8D256E7BC30035560E /* PBXContainerItemProxy */;
-		};
-		D9D3DB99256E7BC30035560E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D9D3DB7A256E7BC00035560E /* PodcastApp */;
-			targetProxy = D9D3DB98256E7BC30035560E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -612,46 +540,6 @@
 			};
 			name = Release;
 		};
-		D9D3DBA7256E7BC30035560E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				INFOPLIST_FILE = PodcastAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.PodcastAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PodcastApp;
-			};
-			name = Debug;
-		};
-		D9D3DBA8256E7BC30035560E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				INFOPLIST_FILE = PodcastAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.PodcastAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PodcastApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -678,15 +566,6 @@
 			buildConfigurations = (
 				D9D3DBA4256E7BC30035560E /* Debug */,
 				D9D3DBA5256E7BC30035560E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D9D3DBA6256E7BC30035560E /* Build configuration list for PBXNativeTarget "PodcastAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D9D3DBA7256E7BC30035560E /* Debug */,
-				D9D3DBA8256E7BC30035560E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
