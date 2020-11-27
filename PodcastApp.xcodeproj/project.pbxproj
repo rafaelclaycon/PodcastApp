@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D92A44BE256EF7F900731EEF /* EpisodeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92A44BD256EF7F900731EEF /* EpisodeRow.swift */; };
 		D92A44C3256F0B6B00731EEF /* PodcastDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92A44C2256F0B6B00731EEF /* PodcastDetailViewModel.swift */; };
+		D94AEC3B2570B0B9001DEB9B /* travel_with_us.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94AEC3A2570B0B9001DEB9B /* travel_with_us.mp3 */; };
 		D95EF9E525705F0F00D03D4F /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D95EF9E425705F0F00D03D4F /* KingfisherSwiftUI */; };
 		D9D3DB7F256E7BC00035560E /* PodcastAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB7E256E7BC00035560E /* PodcastAppApp.swift */; };
 		D9D3DB81256E7BC00035560E /* PodcastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB80256E7BC00035560E /* PodcastList.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		D92A44BD256EF7F900731EEF /* EpisodeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeRow.swift; sourceTree = "<group>"; };
 		D92A44C2256F0B6B00731EEF /* PodcastDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailViewModel.swift; sourceTree = "<group>"; };
+		D94AEC3A2570B0B9001DEB9B /* travel_with_us.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = travel_with_us.mp3; sourceTree = "<group>"; };
 		D9D3DB7B256E7BC00035560E /* PodcastApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D3DB7E256E7BC00035560E /* PodcastAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAppApp.swift; sourceTree = "<group>"; };
 		D9D3DB80256E7BC00035560E /* PodcastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastList.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		D9D3DBC8256E96FD0035560E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D94AEC3A2570B0B9001DEB9B /* travel_with_us.mp3 */,
 				D9D3DBD3256E9B540035560E /* podcasts.json */,
 			);
 			path = Resources;
@@ -320,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D94AEC3B2570B0B9001DEB9B /* travel_with_us.mp3 in Resources */,
 				D9D3DBD4256E9B540035560E /* podcasts.json in Resources */,
 				D9D3DB86256E7BC30035560E /* Preview Assets.xcassets in Resources */,
 				D9D3DB83256E7BC30035560E /* Assets.xcassets in Resources */,

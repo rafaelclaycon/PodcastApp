@@ -7,6 +7,7 @@
 
 import SwiftUI
 import KingfisherSwiftUI
+import SwiftySound
 
 struct PodcastDetail: View {
     @ObservedObject var viewModel: PodcastDetailViewModel
@@ -57,10 +58,11 @@ struct PodcastDetail: View {
             if viewModel.displayEpisodeList {
                 List(viewModel.episodes) { episode in
                     EpisodeRow(episode: episode)
+                        .onTapGesture {
+                            Sound.play(file: "travel_with_us.mp3")
+                        }
                 }
             }
-            
-            Spacer()
         }
     }
 }
