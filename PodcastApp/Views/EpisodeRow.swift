@@ -29,8 +29,8 @@ struct EpisodeRow: View {
 struct EpisodeRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", releaseDate: Date()))
-            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", releaseDate: Date()))
+            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", releaseDate: Date(), streamURL: ""))
+            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", releaseDate: Date(), streamURL: ""))
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }

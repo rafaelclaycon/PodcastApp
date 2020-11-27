@@ -96,9 +96,30 @@ class PodcastAppTests: XCTestCase {
         }
     }
     
-    func testFetchPodcastArtwork() throws {
+    func testFetchPodcastAudioFile() throws {
+        let e = expectation(description: "File download")
+        var path: String = ""
         
+        FeedHelper.fetchEpisodeFile(streamURL: "https://traffic.libsyn.com/secure/praiadosossos/PodcastPraiadosOssosTrailer.mp3?dest-id=2261237", podcastID: "1528797207", episodeID: "34148420-9c8a-4f7e-9447-2b0e39f4b7eb") { filePath, error in
+            guard error == nil else {
+                return XCTFail(error!.localizedDescription)
+            }
+            guard filePath != nil else {
+                return XCTFail("File path is nil.")
+            }
+            path = filePath!
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 10.0) { error in
+            if let error = error {
+                XCTFail("timeout errored: \(error)")
+            }
+            XCTAssertTrue(path.contains("/Documents/Podcasts/1528797207/PodcastPraiadosOssosTrailer.mp3"))
+        }
     }
+    
+    // MARK: - PERFORMANCE
 
     /*func testPerformanceExample() throws {
         // This is an example of a performance test case.

@@ -7,6 +7,7 @@
 
 import Foundation
 import FeedKit
+import Alamofire
 
 class FeedHelper {
     static func fetchEpisodeList(feedURL: String, completionHandler: @escaping (Result<Feed, ParserError>?, FeedHelperError?) -> Void) {
@@ -23,45 +24,38 @@ class FeedHelper {
     }
     
     static func getEpisodeFrom(rssFeedItem item: RSSFeedItem) -> Episode {
-        let episode = Episode(id: item.guid?.value ?? UUID().uuidString, title: item.title ?? "UNTITLED EPISODE", releaseDate: item.pubDate)
+        let episode = Episode(id: item.guid?.value ?? UUID().uuidString, title: item.title ?? "UNTITLED EPISODE", releaseDate: item.pubDate, streamURL: item.enclosure?.attributes?.url ?? "")
         return episode
     }
     
-    /*static func fetchPodcastArtwork(_ feedURL: String, completionHandler: @escaping (Result<Feed, ParserError>?, FeedHelperError?) -> Void) {
-        guard feedURL != "" else {
+    static func fetchEpisodeFile(streamURL: String, podcastID: String, episodeID: String, completionHandler: @escaping (String?, FeedHelperError?) -> Void) {
+        guard streamURL != "" else {
             return completionHandler(nil, .emptyURL)
         }
-        
-        let url = URL(string: feedURL)!
-        let parser = FeedParser(URL: url)
-        
-        parser.parseAsync { result in
-            switch result {
-            case .success(let feed):
-                guard let feed = feed.rssFeed else {
-                    completionHandler(nil, .notAnRSSFeed)
-                }
-                guard let items = feed.items else {
-                    completionHandler(nil, .emptyFeed)
-                }
-                
-                guard let image = feed.image else {
-                    completionHandler(nil, .noImage)
-                }
-                
-                guard let imageURL = image.url else {
-                    completionHandler(nil, .noImage)
-                }
-                
-                
-                
-            case .failure(let error):
-                XCTFail(error.localizedDescription)
-            case .none:
-                XCTFail("None")
-            }
+        guard let url = URL(string: streamURL) else {
+            return completionHandler(nil, .invalidStreamURL)
         }
-    }*/
+        
+        let destination: DownloadRequest.Destination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent("Podcasts/\(podcastID)/\(url.lastPathComponent)")
+
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        AF.download(streamURL, to: destination).response { response in
+            debugPrint(response)
+            
+            guard response.error == nil else {
+                return completionHandler(nil, .downloadError)
+            }
+            guard let filePath = response.fileURL?.path else {
+                return completionHandler(nil, .failedToProvideLocalFileURL)
+            }
+            
+            completionHandler(filePath, nil)
+        }
+    }
 }
 
 enum FeedHelperError: Error {
@@ -70,4 +64,7 @@ enum FeedHelperError: Error {
     case notAnRSSFeed
     case emptyFeed
     case noImage
+    case invalidStreamURL
+    case downloadError
+    case failedToProvideLocalFileURL
 }

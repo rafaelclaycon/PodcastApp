@@ -11,6 +11,7 @@ struct Episode: Hashable, Codable, Identifiable {
     var id: String
     var title: String
     var releaseDate: Date?
+    var streamURL: String
 }
 
 extension Date {
