@@ -13,11 +13,13 @@ class PodcastDetailViewModel: ObservableObject {
     @Published var author: String
     @Published var episodes: [Episode]?
     @Published var feedIsEmpty: Bool
+    @Published var artworkURL: String
     
     init(podcast: Podcast) {
         self.title = podcast.title
         self.author = podcast.author
         self.feedIsEmpty = podcast.episodes != nil
+        self.artworkURL = podcast.artworkURL
         
         FeedHelper.fetchEpisodeList(feedURL: podcast.feedURL) { result, error in
             guard error == nil else {

@@ -6,29 +6,61 @@
 //
 
 import SwiftUI
+import KingfisherSwiftUI
 
 struct PodcastDetail: View {
     @ObservedObject var viewModel: PodcastDetailViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
-                Text(viewModel.title)
-                    .font(.title)
-                    .bold()
+            HStack {
+                KFImage(URL(string: viewModel.artworkURL))
+                    .onSuccess { r in
+                        print("success: \(r)")
+                    }
+                    .onFailure { e in
+                        print("failure: \(e)")
+                    }
+                    .placeholder {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(width: 70, height: 70)
+                                .opacity(0.5)
+
+                            Image(systemName: "waveform")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                                .foregroundColor(.white)
+                                .opacity(0.5)
+                        }
+                    }
+                    .resizable()
+                    .frame(width: 150, height: 150)
                 
-                Text(viewModel.author)
-                    .foregroundColor(.gray)
-                    .font(.title3)
+                VStack(alignment: .leading) {
+                    Text(viewModel.title)
+                        .font(.title)
+                        .bold()
+
+                    Text(viewModel.author)
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                        .padding(.top, 5)
+                }
+                .padding()
+                
+                Spacer()
             }
             .padding()
-            .padding(.leading)
             
 //            if !viewModel.feedIsEmpty {
 //                List(viewModel.episodes!) { episode in
 //                    EpisodeRow(episode: episode)
 //                }
 //            }
+            
+            Spacer()
         }
     }
 }

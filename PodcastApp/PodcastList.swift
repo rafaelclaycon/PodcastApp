@@ -20,8 +20,29 @@ struct PodcastList: View {
                 }
                 .navigationBarTitle(Text("Podcasts 🎙"))
             }.tabItem {
-                Image(systemName: "list.bullet")
+                Image(systemName: "square.grid.3x3.fill")
                 Text("Podcasts")
+            }
+            
+            NavigationView {
+                FilterView()
+            }.tabItem {
+                Image(systemName: "line.horizontal.3.decrease.circle")
+                Text("Filters")
+            }
+            
+            NavigationView {
+                DiscoverView()
+            }.tabItem {
+                Image(systemName: "magnifyingglass")
+                Text("Discover")
+            }
+            
+            NavigationView {
+                ProfileView()
+            }.tabItem {
+                Image(systemName: "person")
+                Text("Profile")
             }
         }
     }

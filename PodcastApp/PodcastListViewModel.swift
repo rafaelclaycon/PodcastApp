@@ -13,7 +13,7 @@ class PodcastListViewModel: ObservableObject {
     init(podcasts: [Podcast]) {
         self.podcasts = podcasts
         self.podcasts.sort {
-            $0.title < $1.title
+            $0.title.folding(options: .diacriticInsensitive, locale: .current) < $1.title.folding(options: .diacriticInsensitive, locale: .current)
         }
     }
 }
