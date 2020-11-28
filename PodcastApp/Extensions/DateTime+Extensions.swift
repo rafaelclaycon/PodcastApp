@@ -34,14 +34,14 @@ extension Double {
             return String(format: "%1ds", seconds)
         // Less than an hour
         } else if totalSeconds < 3600 {
-            // If whole minutes (zero seconds)
-            if (totalSeconds % 60) == 0 {
+            // If "whole" minutes
+            if (totalSeconds % 60) < 60 {
                 return String(format: "%1dm", minutes)
             } else {
                 return String(format: "%1dm %1ds", minutes, seconds)
             }
         } else {
-            // If whole hours (zero minutes)
+            // If "whole" hours
             if (totalSeconds % 3600) < 60 {
                 return String(format: "%1dh", hours)
             } else {
