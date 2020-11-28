@@ -66,6 +66,6 @@ struct PodcastDetail: View {
 
 struct PodcastDetail_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastDetail(viewModel: PodcastDetailViewModel(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: [Episode(id: "1", title: "Flat-Side Promoter", releaseDate: Date(), streamURL: ""), Episode(id: "2", title: "With Four Hands Tied Behind Its Back", releaseDate: Date(), streamURL: "")], feedURL: "", artworkURL: "")))
+        PodcastDetail(viewModel: PodcastDetailViewModel(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: [Episode(id: "1", title: "Flat-Side Promoter", pubDate: Date(), streamURL: "", duration: 1.0), Episode(id: "2", title: "With Four Hands Tied Behind Its Back", pubDate: Date(), streamURL: "", duration: 2.0)], feedURL: "", artworkURL: "")))
     }
 }

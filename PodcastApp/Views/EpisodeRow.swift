@@ -14,12 +14,18 @@ struct EpisodeRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(episode.releaseDate?.asString() ?? "-")
+                Text(episode.pubDate?.asFullString().uppercased() ?? "-")
                     .foregroundColor(.gray)
                     .bold()
                     .font(.footnote)
                 
                 Text(episode.title)
+                    .padding(.top, 0.1)
+                
+                Text(episode.duration.toDisplayString())
+                    .foregroundColor(.gray)
+                    .bold()
+                    .font(.footnote)
                     .padding(.top, 0.1)
             }.padding(.leading)
             
@@ -53,8 +59,8 @@ struct EpisodeRow: View {
 struct EpisodeRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", releaseDate: Date(), streamURL: ""))
-            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", releaseDate: Date(), streamURL: ""))
+            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", pubDate: Date(), streamURL: "", duration: 2.0))
+            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", pubDate: Date(), streamURL: "", duration: 2.5))
         }
         .previewLayout(.fixed(width: 350, height: 70))
     }
