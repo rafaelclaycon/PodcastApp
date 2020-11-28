@@ -9,6 +9,8 @@ import Combine
 
 class PodcastListViewModel: ObservableObject {
     @Published var podcasts: [Podcast]
+    @Published var showOptions = false
+    @Published var layout: GridLayout = .list
     
     init(podcasts: [Podcast]) {
         self.podcasts = podcasts
