@@ -51,7 +51,7 @@ struct EpisodeRow: View {
                     .font(.title)
             }
             .buttonStyle(PlainButtonStyle())
-            .padding(.trailing, 10)
+            .padding()
         }
     }
 }

@@ -119,6 +119,7 @@ class FeedHelperTests: XCTestCase {
             if let error = error {
                 XCTFail("timeout errored: \(error)")
             }
+            // TODO: Clean up the Podcasts folder on tear down.
             XCTAssertTrue(path.contains("/Documents/Podcasts/\(episodeID)/PodcastPraiadosOssosTrailer.mp3"))
         }
     }

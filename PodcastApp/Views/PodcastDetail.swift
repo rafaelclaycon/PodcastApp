@@ -56,8 +56,13 @@ struct PodcastDetail: View {
             .padding()
             
             if viewModel.displayEpisodeList {
-                List(viewModel.episodes) { episode in
-                    EpisodeRow(episode: episode)
+                ScrollView {
+                    LazyVStack {
+                        ForEach(viewModel.episodes, id: \.id) { episode in
+                            EpisodeRow(episode: episode)
+                                .padding(.vertical, 5)
+                        }
+                    }
                 }
             }
         }
