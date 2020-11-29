@@ -11,6 +11,7 @@ struct Episode: Hashable, Codable, Identifiable {
     var id: String
     var title: String
     var pubDate: Date?
-    var streamURL: String
     var duration: Double
+    var remoteURL: String
+    var localFilePath: String?
 }

@@ -32,7 +32,7 @@ struct EpisodeRow: View {
             Spacer()
             
             Button(action: {
-                FeedHelper.fetchEpisodeFile(streamURL: episode.streamURL, podcastID: "test", episodeID: episode.id) { filePath, error in
+                FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: "test", episodeID: episode.id) { filePath, error in
                     guard error == nil else {
                         fatalError()
                     }
@@ -59,8 +59,8 @@ struct EpisodeRow: View {
 struct EpisodeRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", pubDate: Date(), streamURL: "", duration: 2.0))
-            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", pubDate: Date(), streamURL: "", duration: 2.5))
+            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", pubDate: Date(), duration: 2.0, remoteURL: ""))
+            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", pubDate: Date(), duration: 2.5, remoteURL: ""))
         }
         .previewLayout(.fixed(width: 350, height: 70))
     }

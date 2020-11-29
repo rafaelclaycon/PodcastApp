@@ -8,35 +8,39 @@
 import SwiftUI
 
 struct PodcastList: View {
-    @ObservedObject var viewModel = PodcastListViewModel(podcasts: podcastData)
+    @ObservedObject var viewModel = PodcastListViewModel(podcasts: isRunningUnitTests ? nil : DataManager().getUserPodcasts())
     
     var body: some View {
         NavigationView {
-            List(viewModel.podcasts) { podcast in
-                NavigationLink(destination: PodcastDetail(viewModel: PodcastDetailViewModel(podcast: podcast))) {
-                    PodcastRow(podcast: podcast)
+            if viewModel.showGrid {
+                List(viewModel.podcasts!) { podcast in
+                    NavigationLink(destination: PodcastDetail(viewModel: PodcastDetailViewModel(podcast: podcast))) {
+                        PodcastRow(podcast: podcast)
+                    }
                 }
+                .navigationBarTitle(Text("Podcasts 🎙"))
+                .navigationBarItems(trailing:
+                    Button(action: {
+                        viewModel.showOptions = true
+                    }) {
+                        Image(systemName: "ellipsis")
+                            .font(.title)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.horizontal)
+                    .actionSheet(isPresented: $viewModel.showOptions) {
+                        ActionSheet(title: Text(""),
+                                    message: nil,
+                                    buttons: [.default(Text("Sort By")),
+                                              .default(Text("Layout")),
+                                              .default(Text("Badges")),
+                                              .default(Text("Share Podcasts")),
+                                              .cancel(Text("Cancel"))])
+                    }
+                )
+            } else {
+                Text("No Podcasts")
             }
-            .navigationBarTitle(Text("Podcasts 🎙"))
-            .navigationBarItems(trailing:
-                Button(action: {
-                    viewModel.showOptions = true
-                }) {
-                    Image(systemName: "ellipsis")
-                        .font(.title)
-                }
-                .buttonStyle(PlainButtonStyle())
-                .padding(.horizontal)
-                .actionSheet(isPresented: $viewModel.showOptions) {
-                    ActionSheet(title: Text(""),
-                                message: nil,
-                                buttons: [.default(Text("Sort By")),
-                                          .default(Text("Layout")),
-                                          .default(Text("Badges")),
-                                          .default(Text("Share Podcasts")),
-                                          .cancel(Text("Cancel"))])
-                }
-            )
         }
     }
 }

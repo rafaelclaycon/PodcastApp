@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let isRunningUnitTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+
 @main
 struct PodcastAppApp: App {
     var body: some Scene {
