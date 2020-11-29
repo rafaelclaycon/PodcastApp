@@ -1,5 +1,12 @@
 # PodcastApp
 
-An iOS podcast app. This is meant as a study of network requests, local data persistance and audio playback mixed with SwiftUI, Combine and lazy loading.
+iOS podcast app made in Swift and SwiftUI.
 
-![Main app screen with a list of podcasts and controls such as play, go backwards and go forwards](PodcastApp/Resources/main-screen-example.png)
+This is meant as a study of:
+
+- network requests, local data persistence, audio playback;
+- SwiftUI, Combine and lazy loading.
+
+![A vertical list of podcast artworks with their titles and authors to the right inside the iPhone 11 simulator.](PodcastApp/Resources/main-screen.png)
+
+![Artwork for Accidental Tech Podcast at the top with a list of the show's episodes below.](PodcastApp/Resources/detail-example.png)
