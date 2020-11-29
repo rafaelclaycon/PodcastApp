@@ -18,7 +18,7 @@ class FeedHelperTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testGetEpisodeListAndCheckCount() throws {
+    func testFetchEpisodeListAndCheckItsCount() throws {
         let e = expectation(description: "Feed load")
         var episodes = [Episode]()
         
@@ -57,7 +57,7 @@ class FeedHelperTests: XCTestCase {
         }
     }
     
-    func testGetFirstPraiaDosOssosEpisodeAndCheckItsTitle() throws {
+    func testFetchFirstEpisodeAndCheckItsTitle() throws {
         let e = expectation(description: "Feed load")
         var episodes = [Episode]()
         
