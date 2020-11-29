@@ -1,11 +1,11 @@
 # PodcastApp
 
-iOS podcast app made in Swift and SwiftUI.
+iOS podcast app made with Swift and SwiftUI.
 
-This is meant as a study of:
+This is intended as a study of:
 
 - network requests, local data persistence, audio playback;
-- SwiftUI, Combine and lazy loading.
+- SwiftUI, Combine, and lazy loading.
 
 ![A vertical list of podcast artworks with their titles and authors to the right inside the iPhone 11 simulator.](PodcastApp/Resources/main-screen.png)
 
