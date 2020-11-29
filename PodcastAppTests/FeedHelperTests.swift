@@ -9,6 +9,9 @@ import XCTest
 @testable import PodcastApp
 
 class FeedHelperTests: XCTestCase {
+    
+    let testFeedURL = "https://praiadosossos.libsyn.com/rss"
+    let testFileRemoteURL = "https://traffic.libsyn.com/secure/praiadosossos/PodcastPraiadosOssosTrailer.mp3?dest-id=2261237"
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,7 +25,7 @@ class FeedHelperTests: XCTestCase {
         let e = expectation(description: "Feed load")
         var episodes = [Episode]()
         
-        FeedHelper.fetchEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss") { result, error in
+        FeedHelper.fetchEpisodeList(feedURL: testFeedURL) { result, error in
             guard error == nil else {
                 return XCTFail(error!.localizedDescription)
             }
@@ -61,7 +64,7 @@ class FeedHelperTests: XCTestCase {
         let e = expectation(description: "Feed load")
         var episodes = [Episode]()
         
-        FeedHelper.fetchEpisodeList(feedURL: "https://praiadosossos.libsyn.com/rss") { result, error in
+        FeedHelper.fetchEpisodeList(feedURL: testFeedURL) { result, error in
             guard error == nil else {
                 return XCTFail(error!.localizedDescription)
             }
@@ -99,8 +102,9 @@ class FeedHelperTests: XCTestCase {
     func testFetchPodcastAudioFile() throws {
         let e = expectation(description: "File download")
         var path: String = ""
+        let episodeID = "1528797207"
         
-        FeedHelper.fetchEpisodeFile(streamURL: "https://traffic.libsyn.com/secure/praiadosossos/PodcastPraiadosOssosTrailer.mp3?dest-id=2261237", podcastID: "1528797207", episodeID: "34148420-9c8a-4f7e-9447-2b0e39f4b7eb") { filePath, error in
+        FeedHelper.fetchEpisodeFile(streamURL: testFileRemoteURL, podcastID: episodeID, episodeID: "34148420-9c8a-4f7e-9447-2b0e39f4b7eb") { filePath, error in
             guard error == nil else {
                 return XCTFail(error!.localizedDescription)
             }
@@ -115,7 +119,7 @@ class FeedHelperTests: XCTestCase {
             if let error = error {
                 XCTFail("timeout errored: \(error)")
             }
-            XCTAssertTrue(path.contains("/Documents/Podcasts/1528797207/PodcastPraiadosOssosTrailer.mp3"))
+            XCTAssertTrue(path.contains("/Documents/Podcasts/\(episodeID)/PodcastPraiadosOssosTrailer.mp3"))
         }
     }
 
