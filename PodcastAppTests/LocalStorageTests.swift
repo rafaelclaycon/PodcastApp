@@ -13,7 +13,7 @@ class LocalStorageTests: XCTestCase {
     let storage = LocalStorage()
     
     override func setUpWithError() throws {
-        XCTAssertEqual(storage.getPodcastCount(), 0)
+        XCTAssertEqual(try storage.getPodcastCount(), 0)
     }
 
     override func tearDownWithError() throws {
@@ -25,7 +25,7 @@ class LocalStorageTests: XCTestCase {
         for podcast in podcasts {
             XCTAssertNoThrow(try storage.insert(podcast: podcast))
         }
-        XCTAssertEqual(storage.getPodcastCount(), 9)
+        XCTAssertEqual(try storage.getPodcastCount(), 9)
     }
 
 }

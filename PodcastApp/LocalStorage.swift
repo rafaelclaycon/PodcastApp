@@ -41,12 +41,8 @@ class LocalStorage {
         }
     }
     
-    func getPodcastCount() -> Int {
-        do {
-            return try db.scalar(podcasts.count)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
+    func getPodcastCount() throws -> Int {
+        return try db.scalar(podcasts.count)
     }
     
     func insert(podcast: Podcast) throws {
@@ -54,17 +50,13 @@ class LocalStorage {
         try db.run(insert)
     }
     
-    func getAllPodcasts() -> [Podcast] {
+    func getAllPodcasts() throws -> [Podcast] {
         var queriedPodcasts = [Podcast]()
         
-        do {
-            for podcast in try db.prepare(podcasts) {
-                queriedPodcasts.append(try podcast.decode())
-            }
-            return queriedPodcasts
-        } catch {
-            fatalError(error.localizedDescription)
+        for podcast in try db.prepare(podcasts) {
+            queriedPodcasts.append(try podcast.decode())
         }
+        return queriedPodcasts
     }
     
     func deleteAllPodcasts() throws {

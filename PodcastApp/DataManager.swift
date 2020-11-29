@@ -11,17 +11,21 @@ class DataManager {
     var storage = LocalStorage()
     
     func getUserPodcasts() -> [Podcast] {
-        if storage.getPodcastCount() == 0 {
-            let podcasts = PodcastAppService.getPodcasts()
-            for podcast in podcasts {
-                do {
-                    try storage.insert(podcast: podcast)
-                } catch {
-                    fatalError(error.localizedDescription)
+        do {
+            if try storage.getPodcastCount() == 0 {
+                let podcasts = PodcastAppService.getPodcasts()
+                for podcast in podcasts {
+                    do {
+                        try storage.insert(podcast: podcast)
+                    } catch {
+                        fatalError(error.localizedDescription)
+                    }
                 }
             }
+            
+            return try storage.getAllPodcasts()
+        } catch {
+            fatalError(error.localizedDescription)
         }
-        
-        return storage.getAllPodcasts()
     }
 }
