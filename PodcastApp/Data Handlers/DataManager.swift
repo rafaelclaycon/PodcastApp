@@ -28,4 +28,20 @@ class DataManager {
             fatalError(error.localizedDescription)
         }
     }
+    
+    func play(episode: Episode) {
+        if episode.localFilePath != nil {
+            player.play(file: episode.localFilePath!)
+        } else {
+            FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: "test", episodeID: episode.id) { filePath, error in
+                guard error == nil else {
+                    fatalError()
+                }
+                guard filePath != nil else {
+                    fatalError()
+                }
+                player.play(file: filePath!)
+            }
+        }
+    }
 }

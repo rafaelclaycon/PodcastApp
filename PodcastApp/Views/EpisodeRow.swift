@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftySound
 
 struct EpisodeRow: View {
     var episode: Episode
@@ -32,19 +31,7 @@ struct EpisodeRow: View {
             Spacer()
             
             Button(action: {
-                FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: "test", episodeID: episode.id) { filePath, error in
-                    guard error == nil else {
-                        fatalError()
-                    }
-                    guard filePath != nil else {
-                        fatalError()
-                    }
-                    guard let url = URL(string: filePath!) else {
-                        fatalError()
-                    }
-                    
-                    Sound.play(url: url)
-                }
+                dataManager.play(episode: episode)
             }) {
                 Image(systemName: "play.circle")
                     .foregroundColor(.red)
