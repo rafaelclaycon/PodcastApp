@@ -8,30 +8,42 @@
 import SwiftUI
 
 struct EpisodeRow: View {
-    var episode: Episode
+    @ObservedObject var viewModel: EpisodeRowViewModel
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(episode.pubDate?.asFullString().uppercased() ?? "-")
+                Text(viewModel.pubDate)
                     .foregroundColor(.gray)
                     .bold()
                     .font(.footnote)
                 
-                Text(episode.title)
+                Text(viewModel.title)
                     .padding(.top, 0.1)
                 
-                Text(episode.duration.toDisplayString())
-                    .foregroundColor(.gray)
-                    .bold()
-                    .font(.footnote)
-                    .padding(.top, 0.1)
+                HStack {
+                    if viewModel.isAvailableOffline {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.green)
+                            .font(.footnote)
+                    } else {
+                        Image(systemName: "icloud.and.arrow.down")
+                            .foregroundColor(.gray)
+                            .font(.footnote)
+                    }
+                    
+                    Text(viewModel.duration)
+                        .foregroundColor(.gray)
+                        .bold()
+                        .font(.footnote)
+                        .padding(.top, 0.1)
+                }
             }.padding(.leading)
             
             Spacer()
             
             Button(action: {
-                dataManager.play(episode: episode)
+                viewModel.play()
             }) {
                 Image(systemName: "play.circle")
                     .foregroundColor(.red)
@@ -39,6 +51,9 @@ struct EpisodeRow: View {
             }
             .buttonStyle(PlainButtonStyle())
             .padding()
+            .alert(isPresented: $viewModel.displayAlert) {
+                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
@@ -46,8 +61,8 @@ struct EpisodeRow: View {
 struct EpisodeRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EpisodeRow(episode: Episode(id: "1", title: "Flat-Side Promoter", pubDate: Date(), duration: 2.0, remoteURL: ""))
-            EpisodeRow(episode: Episode(id: "2", title: "With Four Hands Tied Behind Its Back", pubDate: Date(), duration: 2.5, remoteURL: ""))
+            EpisodeRow(viewModel: EpisodeRowViewModel(episode: Episode(id: "1", podcastID: 123, title: "Flat-Side Promoter", pubDate: Date(), duration: 300, remoteURL: "")))
+            EpisodeRow(viewModel: EpisodeRowViewModel(episode: Episode(id: "2", podcastID: 456, title: "With Four Hands Tied Behind Its Back", pubDate: Date(), duration: 3600, remoteURL: "")))
         }
         .previewLayout(.fixed(width: 350, height: 70))
     }

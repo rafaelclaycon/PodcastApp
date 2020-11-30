@@ -36,7 +36,7 @@ class PodcastDetailViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     for item in items {
-                        self.episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                        self.episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item, podcastID: podcast.id))
                     }
                     self.displayEpisodeList = true
                 }

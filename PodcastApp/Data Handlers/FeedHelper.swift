@@ -23,12 +23,12 @@ class FeedHelper {
         }
     }
     
-    static func getEpisodeFrom(rssFeedItem item: RSSFeedItem) -> Episode {
-        let episode = Episode(id: item.guid?.value ?? UUID().uuidString, title: item.title ?? "UNTITLED EPISODE", pubDate: item.pubDate, duration: item.iTunes?.iTunesDuration ?? 0, remoteURL: item.enclosure?.attributes?.url ?? "")
+    static func getEpisodeFrom(rssFeedItem item: RSSFeedItem, podcastID: Int) -> Episode {
+        let episode = Episode(id: item.guid?.value ?? UUID().uuidString, podcastID: podcastID, title: item.title ?? "UNTITLED EPISODE", pubDate: item.pubDate, duration: item.iTunes?.iTunesDuration ?? 0, remoteURL: item.enclosure?.attributes?.url ?? "")
         return episode
     }
     
-    static func fetchEpisodeFile(streamURL: String, podcastID: String, episodeID: String, completionHandler: @escaping (String?, FeedHelperError?) -> Void) {
+    static func fetchEpisodeFile(streamURL: String, podcastID: Int, episodeID: String, completionHandler: @escaping (String?, FeedHelperError?) -> Void) {
         guard streamURL != "" else {
             return completionHandler(nil, .emptyURL)
         }

@@ -12,6 +12,7 @@ class FeedHelperTests: XCTestCase {
     
     let testFeedURL = "https://praiadosossos.libsyn.com/rss"
     let testFileRemoteURL = "https://traffic.libsyn.com/secure/praiadosossos/PodcastPraiadosOssosTrailer.mp3?dest-id=2261237"
+    let testPodcastID = 1528797207
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -40,7 +41,7 @@ class FeedHelperTests: XCTestCase {
                 }
                 
                 for item in items {
-                    episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                    episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item, podcastID: self.testPodcastID))
                 }
                 
                 e.fulfill()
@@ -79,7 +80,7 @@ class FeedHelperTests: XCTestCase {
                 }
                 
                 for item in items {
-                    episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item))
+                    episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item, podcastID: self.testPodcastID))
                 }
                 
                 e.fulfill()
@@ -102,9 +103,8 @@ class FeedHelperTests: XCTestCase {
     func testFetchPodcastAudioFile() throws {
         let e = expectation(description: "File download")
         var path: String = ""
-        let episodeID = "1528797207"
         
-        FeedHelper.fetchEpisodeFile(streamURL: testFileRemoteURL, podcastID: episodeID, episodeID: "34148420-9c8a-4f7e-9447-2b0e39f4b7eb") { filePath, error in
+        FeedHelper.fetchEpisodeFile(streamURL: testFileRemoteURL, podcastID: testPodcastID, episodeID: "34148420-9c8a-4f7e-9447-2b0e39f4b7eb") { filePath, error in
             guard error == nil else {
                 return XCTFail(error!.localizedDescription)
             }
@@ -120,7 +120,7 @@ class FeedHelperTests: XCTestCase {
                 XCTFail("timeout errored: \(error)")
             }
             // TODO: Clean up the Podcasts folder on tear down.
-            XCTAssertTrue(path.contains("/Documents/Podcasts/\(episodeID)/PodcastPraiadosOssosTrailer.mp3"))
+            XCTAssertTrue(path.contains("/Documents/Podcasts/\(self.testPodcastID)/PodcastPraiadosOssosTrailer.mp3"))
         }
     }
 

@@ -8,9 +8,11 @@
 import Foundation
 
 class DataManager {
-    var storage = LocalStorage()
+    private var storage = LocalStorage()
     
-    func getUserPodcasts() -> [Podcast] {
+    var podcasts: [Podcast]
+    
+    init() {
         do {
             if try storage.getPodcastCount() == 0 {
                 let podcasts = PodcastAppService.getPodcasts()
@@ -23,7 +25,7 @@ class DataManager {
                 }
             }
             
-            return try storage.getAllPodcasts()
+            self.podcasts = try storage.getAllPodcasts()
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -38,7 +40,7 @@ class DataManager {
                 print(state?.activity as Any)
             })
         } else {
-            FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: "test", episodeID: episode.id) { filePath, error in
+            FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: episode.podcastID, episodeID: episode.id) { filePath, error in
                 guard error == nil else {
                     fatalError()
                 }
@@ -56,4 +58,19 @@ class DataManager {
             }
         }
     }
+    
+    func playEpisode(byID episodeID: String, podcastID: Int) throws {
+        guard let podcast = podcasts.first(where: { $0.id == podcastID }) else {
+            throw DataManagerError.podcastIDNotFound
+        }
+        guard let episode = podcast.episodes?.first(where: { $0.id == episodeID }) else {
+            throw DataManagerError.episodeIDNotFound
+        }
+        self.play(episode: episode)
+    }
+}
+
+enum DataManagerError: Error {
+    case podcastIDNotFound
+    case episodeIDNotFound
 }

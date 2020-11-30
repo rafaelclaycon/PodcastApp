@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PodcastList: View {
-    @ObservedObject var viewModel = PodcastListViewModel(podcasts: isRunningUnitTests ? nil : dataManager.getUserPodcasts())
+    @ObservedObject var viewModel = PodcastListViewModel(podcasts: isRunningUnitTests ? nil : dataManager.podcasts)
     
     var body: some View {
         NavigationView {

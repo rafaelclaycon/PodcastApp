@@ -9,6 +9,7 @@ import Foundation
 
 struct Episode: Hashable, Codable, Identifiable {
     var id: String
+    var podcastID: Int
     var title: String
     var pubDate: Date?
     var duration: Double

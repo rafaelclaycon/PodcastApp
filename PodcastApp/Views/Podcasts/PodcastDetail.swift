@@ -7,7 +7,6 @@
 
 import SwiftUI
 import KingfisherSwiftUI
-import SwiftySound
 
 struct PodcastDetail: View {
     @ObservedObject var viewModel: PodcastDetailViewModel
@@ -59,7 +58,7 @@ struct PodcastDetail: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(viewModel.episodes, id: \.id) { episode in
-                            EpisodeRow(episode: episode)
+                            EpisodeRow(viewModel: EpisodeRowViewModel(episode: episode))
                                 .padding(.vertical, 5)
                         }
                     }
@@ -71,6 +70,6 @@ struct PodcastDetail: View {
 
 struct PodcastDetail_Previews: PreviewProvider {
     static var previews: some View {
-        PodcastDetail(viewModel: PodcastDetailViewModel(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: [Episode(id: "1", title: "Flat-Side Promoter", pubDate: Date(), duration: 1.0, remoteURL: ""), Episode(id: "2", title: "With Four Hands Tied Behind Its Back", pubDate: Date(), duration: 2.0, remoteURL: "")], feedURL: "", artworkURL: "")))
+        PodcastDetail(viewModel: PodcastDetailViewModel(podcast: Podcast(id: 1, title: "Praia dos Ossos", author: "Rádio Novelo", episodes: [Episode(id: "1", podcastID: 123, title: "Flat-Side Promoter", pubDate: Date(), duration: 1.0, remoteURL: ""), Episode(id: "2", podcastID: 345, title: "With Four Hands Tied Behind Its Back", pubDate: Date(), duration: 2.0, remoteURL: "")], feedURL: "", artworkURL: "")))
     }
 }
