@@ -8,7 +8,7 @@
 import SwiftUI
 
 let dataManager = DataManager()
-let player = Player()
+var player: Player? = nil
 
 let isRunningUnitTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
 

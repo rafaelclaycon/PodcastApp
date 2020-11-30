@@ -31,7 +31,12 @@ class DataManager {
     
     func play(episode: Episode) {
         if episode.localFilePath != nil {
-            player.play(file: episode.localFilePath!)
+            guard let url = URL(string: episode.localFilePath!) else {
+                fatalError()
+            }
+            player = Player(url: url, update: { state in
+                print(state?.activity as Any)
+            })
         } else {
             FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: "test", episodeID: episode.id) { filePath, error in
                 guard error == nil else {
@@ -40,7 +45,14 @@ class DataManager {
                 guard filePath != nil else {
                     fatalError()
                 }
-                player.play(file: filePath!)
+                guard let url = URL(string: filePath!) else {
+                    fatalError()
+                }
+                player = Player(url: url, update: { state in
+                    print(state?.activity as Any)
+                })
+                
+                player?.togglePlay()
             }
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NowPlayingBar<Content: View>: View {
     var content: Content
-    @State var showBar = (player.state == .playing) || (player.state == .paused)
+    @State var showBar: Bool = player != nil ? ((player!.state.activity == .playing) || (player!.state.activity == .paused)) : false
     
     @ViewBuilder var body: some View {
         ZStack(alignment: .bottom) {
