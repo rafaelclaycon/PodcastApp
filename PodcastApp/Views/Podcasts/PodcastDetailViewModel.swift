@@ -9,15 +9,11 @@ import Combine
 import Foundation
 
 class PodcastDetailViewModel: ObservableObject {
-    @Published var title: String
-    @Published var author: String
-    @Published var episodes = [Episode]()
-    @Published var displayEpisodeList: Bool = false
     @Published var artworkURL: String
+    @Published var displayEpisodeList: Bool = false
+    @Published var episodes = [Episode]()
 
     init(podcast: Podcast) {
-        title = podcast.title
-        author = podcast.author
         artworkURL = podcast.artworkURL
         dataManager.getEpisodes(forPodcastID: podcast.id, feedURL: podcast.feedURL) { episodes, error in
             guard error == nil else {
@@ -27,10 +23,10 @@ class PodcastDetailViewModel: ObservableObject {
                 return print("Episodes is empty.")
             }
             self.episodes = episodes
-        }
-
-        DispatchQueue.main.async {
-            self.displayEpisodeList = true
+            
+            DispatchQueue.main.async {
+                self.displayEpisodeList = episodes.count > 0
+            }
         }
     }
 }

@@ -36,9 +36,10 @@ struct EpisodeRow: View {
                         .foregroundColor(.gray)
                         .bold()
                         .font(.footnote)
-                        .padding(.top, 0.1)
                 }
-            }.padding(.leading)
+                .padding(.top, 0.1)
+            }
+            .padding(.leading)
 
             Spacer()
 
