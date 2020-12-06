@@ -10,6 +10,7 @@ import SwiftUI
 struct NowPlayingBar<Content: View>: View {
     var content: Content
     @State var showBar: Bool = player != nil ? ((player!.state.activity == .playing) || (player!.state.activity == .paused)) : false
+    @State private var showNowPlayingScreen: Bool = false
     
     @ViewBuilder var body: some View {
         ZStack(alignment: .bottom) {
@@ -40,7 +41,6 @@ struct NowPlayingBar<Content: View>: View {
                                 .font(.headline)
                         }
                         .buttonStyle(PlainButtonStyle())
-                        //.padding(.horizontal)
                         
                         Button(action: {}) {
                             Image(systemName: "play.circle.fill")
@@ -54,7 +54,6 @@ struct NowPlayingBar<Content: View>: View {
                                 .font(.headline)
                         }
                         .buttonStyle(PlainButtonStyle())
-                        //.padding(.horizontal)
                         
                         Spacer()
                         
@@ -66,6 +65,10 @@ struct NowPlayingBar<Content: View>: View {
                         .padding(.trailing, 20)
                     }
                 }
+                .onTapGesture {
+                    self.showNowPlayingScreen.toggle()
+                }
+                .fullScreenCover(isPresented: $showNowPlayingScreen, content: NowPlayingView.init)
             }
         }
     }
