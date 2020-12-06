@@ -48,13 +48,25 @@ class DataManager {
                 print(state?.activity as Any)
             })
         } else {
-            FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: episode.podcastID, episodeID: episode.id) { filePath, error in
+            FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: episode.podcastID, episodeID: episode.id) { [weak self] filePath, error in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 guard error == nil else {
                     fatalError()
                 }
                 guard filePath != nil else {
                     fatalError()
                 }
+                
+                // Seizes the opportunity to save the local file path onto the episode.
+                do {
+                    try strongSelf.updateLocalFilePath(forEpisode: episode, with: filePath!)
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
+                
                 guard let url = URL(string: filePath!) else {
                     fatalError()
                 }
@@ -167,10 +179,34 @@ class DataManager {
             print(error.localizedDescription)
         }
     }
+    
+    func updateLocalFilePath(forEpisode episode: Episode, with filePath: String) throws {
+        // Update it on the in-memory array.
+        try updateInMemoryEpisodeLocalFilePath(podcastID: episode.podcastID, episodeID: episode.id, filePath: filePath)
+        // Update it on the database.
+        storage!.updateLocalFilePath(forEpisode: episode.id, with: filePath)
+    }
+    
+    private func updateInMemoryEpisodeLocalFilePath(podcastID: Int, episodeID: String, filePath: String) throws {
+        guard podcasts != nil else {
+            throw DataManagerError.podcastArrayIsUninitialized
+        }
+        guard let podcastIndex = podcasts?.firstIndex(where: { $0.id == podcastID }) else {
+            throw DataManagerError.podcastIDNotFound
+        }
+        guard podcasts![podcastIndex].episodes != nil else {
+            throw DataManagerError.episodeArrayIsUninitialized
+        }
+        guard let episodeIndex = podcasts![podcastIndex].episodes!.firstIndex(where: { $0.id == episodeID }) else {
+            throw DataManagerError.episodeIDNotFound
+        }
+        podcasts![podcastIndex].episodes![episodeIndex].localFilePath = filePath
+    }
 }
 
 enum DataManagerError: Error {
     case podcastIDNotFound
     case episodeIDNotFound
     case podcastArrayIsUninitialized
+    case episodeArrayIsUninitialized
 }

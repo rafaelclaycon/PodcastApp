@@ -115,4 +115,19 @@ class LocalStorage {
     func deleteAllEpisodes() throws {
         try db.run(episodes.delete())
     }
+    
+    func updateLocalFilePath(forEpisode episodeID: String, with filePath: String) {
+        let id = Expression<String>("id")
+        let episode = episodes.filter(id == episodeID)
+        let localFilePath = Expression<String?>("localFilePath")
+        do {
+            if try db.run(episode.update(localFilePath <- filePath)) > 0 {
+                print("Episode \(episodeID) updated with file path: \(filePath)")
+            } else {
+                print("Episode \(episodeID) not found")
+            }
+        } catch {
+            print("update failed: \(error)")
+        }
+    }
 }
