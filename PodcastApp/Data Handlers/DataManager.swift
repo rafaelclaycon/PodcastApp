@@ -8,24 +8,32 @@
 import Foundation
 
 class DataManager {
-    private var storage = LocalStorage()
+    typealias PodcastFetchMethod = () -> [Podcast]
     
-    var podcasts: [Podcast]
+    private var storage: LocalStorage? = nil
     
-    init() {
+    var podcasts: [Podcast]? = nil
+    
+    init(storage injectedStorage: LocalStorage?, fetchMethod: PodcastFetchMethod) {
+        guard injectedStorage != nil else {
+            return
+        }
+        
+        self.storage = injectedStorage
+        
         do {
-            if try storage.getPodcastCount() == 0 {
-                let podcasts = PodcastAppService.getPodcasts()
+            if try storage?.getPodcastCount() == 0 {
+                let podcasts = fetchMethod()
                 for podcast in podcasts {
                     do {
-                        try storage.insert(podcast: podcast)
+                        try storage?.insert(podcast: podcast)
                     } catch {
                         fatalError(error.localizedDescription)
                     }
                 }
             }
             
-            self.podcasts = try storage.getAllPodcasts()
+            self.podcasts = try storage?.getAllPodcasts()
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -60,13 +68,80 @@ class DataManager {
     }
     
     func playEpisode(byID episodeID: String, podcastID: Int) throws {
-        guard let podcast = podcasts.first(where: { $0.id == podcastID }) else {
+        guard let podcast = podcasts?.first(where: { $0.id == podcastID }) else {
             throw DataManagerError.podcastIDNotFound
         }
         guard let episode = podcast.episodes?.first(where: { $0.id == episodeID }) else {
             throw DataManagerError.episodeIDNotFound
         }
         self.play(episode: episode)
+    }
+    
+    func addEpisodes(_ episodes: [Episode], podcastID: Int) throws {
+        guard let _ = podcasts?.first(where: { $0.id == podcastID }) else {
+            throw DataManagerError.podcastIDNotFound
+        }
+        /*if podcast.episodes == nil {
+            podcast.episodes = [Episode]()
+        }
+        podcast.episodes!.append(contentsOf: episodes)*/
+        
+        for episode in episodes {
+            try storage?.insert(episode: episode)
+        }
+    }
+    
+    func getEpisodes(forPodcastID podcastID: Int, feedURL: String, completionHandler: @escaping ([Episode]?, FeedHelperError?) -> Void) {
+        do {
+            let localEpisodes = try storage!.getAllEpisodes(forID: podcastID)
+            
+            if localEpisodes.count > 0 {
+                print("LOCAL FETCH: podcast \(podcastID)")
+                completionHandler(localEpisodes, nil)
+            } else {
+                print("REMOTE FETCH: podcast \(podcastID)")
+                FeedHelper.fetchEpisodeList(feedURL: feedURL) { [weak self] result, error in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    
+                    guard error == nil else {
+                        fatalError(error!.localizedDescription)
+                    }
+                    
+                    switch result {
+                    case .success(let feed):
+                        guard let feed = feed.rssFeed else {
+                            return completionHandler(nil, FeedHelperError.notAnRSSFeed)
+                        }
+                        guard let items = feed.items else {
+                            return completionHandler(nil, FeedHelperError.emptyFeed)
+                        }
+                        
+                        var episodes = [Episode]()
+                        
+                        for item in items {
+                            episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item, podcastID: podcastID))
+                        }
+                        
+                        do {
+                            try strongSelf.addEpisodes(episodes, podcastID: podcastID)
+                        } catch {
+                            fatalError(error.localizedDescription)
+                        }
+                        
+                        completionHandler(episodes, nil)
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    case .none:
+                        fatalError("None")
+                    }
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 

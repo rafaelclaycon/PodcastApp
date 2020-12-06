@@ -19,33 +19,18 @@ class PodcastDetailViewModel: ObservableObject {
         self.title = podcast.title
         self.author = podcast.author
         self.artworkURL = podcast.artworkURL
-        
-        FeedHelper.fetchEpisodeList(feedURL: podcast.feedURL) { result, error in
+        dataManager.getEpisodes(forPodcastID: podcast.id, feedURL: podcast.feedURL) { episodes, error in
             guard error == nil else {
-                fatalError(error!.localizedDescription)
+                fatalError(error.debugDescription)
             }
-            
-            switch result {
-            case .success(let feed):
-                guard let feed = feed.rssFeed else {
-                    fatalError("Not an RSS Feed.")
-                }
-                guard let items = feed.items else {
-                    fatalError("Empty feed.")
-                }
-                
-                DispatchQueue.main.async {
-                    for item in items {
-                        self.episodes.append(FeedHelper.getEpisodeFrom(rssFeedItem: item, podcastID: podcast.id))
-                    }
-                    self.displayEpisodeList = true
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .none:
-                fatalError("None")
+            guard let episodes = episodes else {
+                return print("Episodes is empty.")
             }
+            self.episodes = episodes
+        }
+        
+        DispatchQueue.main.async {
+            self.displayEpisodeList = true
         }
     }
 }
