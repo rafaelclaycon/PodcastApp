@@ -59,7 +59,7 @@ class DataManager {
                     fatalError()
                 }
                 player = Player(url: url, update: { state in
-                    print(state?.activity as Any)
+                    //print(state?.activity as Any)
                 })
 
                 player?.togglePlay()
@@ -78,13 +78,17 @@ class DataManager {
     }
 
     func addEpisodes(_ episodes: [Episode], podcastID: Int) throws {
-        guard let _ = podcasts?.first(where: { $0.id == podcastID }) else {
+        guard podcasts != nil else {
+            throw DataManagerError.podcastArrayIsUninitialized
+        }
+        guard let podcastIndex = podcasts?.firstIndex(where: { $0.id == podcastID }) else {
             throw DataManagerError.podcastIDNotFound
         }
-        /* if podcast.episodes == nil {
-             podcast.episodes = [Episode]()
-         }
-         podcast.episodes!.append(contentsOf: episodes) */
+        
+        if podcasts![podcastIndex].episodes == nil {
+            podcasts![podcastIndex].episodes = [Episode]()
+        }
+        podcasts![podcastIndex].episodes!.append(contentsOf: episodes)
 
         for episode in episodes {
             try storage?.insert(episode: episode)
@@ -92,14 +96,34 @@ class DataManager {
     }
 
     func getEpisodes(forPodcastID podcastID: Int, feedURL: String, completionHandler: @escaping ([Episode]?, FeedHelperError?) -> Void) {
+        guard let podcast = podcasts?.first(where: { $0.id == podcastID }) else {
+            return
+        }
+        
+        // 1. First tries to get the episodes from memory.
+        if let episodes = podcast.episodes, episodes.count > 0 {
+            print("IN-MEMORY FETCH: podcast \(podcastID)")
+            completionHandler(episodes, nil)
+            return
+        }
+        
         do {
             let localEpisodes = try storage!.getAllEpisodes(forID: podcastID)
 
+            // 2. If there are no episodes in memory, tries the local DB.
             if localEpisodes.count > 0 {
                 print("LOCAL FETCH: podcast \(podcastID)")
                 completionHandler(localEpisodes, nil)
+                do {
+                    try addEpisodes(localEpisodes, podcastID: podcastID)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+            // 3. If that fails, tries to get them from the podcast's hosting server.
             } else {
                 print("REMOTE FETCH: podcast \(podcastID)")
+                
                 FeedHelper.fetchEpisodeList(feedURL: feedURL) { [weak self] result, error in
                     guard let strongSelf = self else {
                         return
@@ -148,4 +172,5 @@ class DataManager {
 enum DataManagerError: Error {
     case podcastIDNotFound
     case episodeIDNotFound
+    case podcastArrayIsUninitialized
 }
