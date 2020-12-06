@@ -39,7 +39,8 @@ struct PodcastList: View {
                     }
                 )
             } else {
-                Text("No Podcasts")
+                NoPodcastsView()
+                    .navigationBarTitle(Text("Podcasts 🎙"))
             }
         }
     }
