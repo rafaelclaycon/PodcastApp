@@ -5,12 +5,12 @@
 //  Created by Rafael Schmitt on 25/11/20.
 //
 
-import SwiftUI
 import KingfisherSwiftUI
+import SwiftUI
 
 struct PodcastRow: View {
     var podcast: Podcast
-    
+
     var body: some View {
         HStack {
             KFImage(URL(string: podcast.artworkURL))
@@ -35,7 +35,7 @@ struct PodcastRow: View {
                 }
                 .resizable()
                 .frame(width: 70, height: 70)
-            
+
             VStack(alignment: .leading) {
                 Text(podcast.title)
                     .font(.body)
@@ -47,10 +47,9 @@ struct PodcastRow: View {
                     .foregroundColor(.gray)
                     .font(.footnote)
             }
-            
+
             Spacer()
         }
-        
     }
 }
 

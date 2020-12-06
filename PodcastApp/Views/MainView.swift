@@ -14,17 +14,17 @@ struct MainView: View {
                 Image(systemName: "square.grid.3x3.fill")
                 Text("Podcasts")
             }
-            
+
             NowPlayingBar(content: FilterView()).tabItem {
                 Image(systemName: "line.horizontal.3.decrease.circle")
                 Text("Filters")
             }
-            
+
             NowPlayingBar(content: DiscoverView()).tabItem {
                 Image(systemName: "magnifyingglass")
                 Text("Discover")
             }
-            
+
             NowPlayingBar(content: ProfileView()).tabItem {
                 Image(systemName: "person")
                 Text("Profile")

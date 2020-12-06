@@ -5,8 +5,8 @@
 //  Created by Rafael Schmitt on 25/11/20.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class PodcastDetailViewModel: ObservableObject {
     @Published var title: String
@@ -14,11 +14,11 @@ class PodcastDetailViewModel: ObservableObject {
     @Published var episodes = [Episode]()
     @Published var displayEpisodeList: Bool = false
     @Published var artworkURL: String
-    
+
     init(podcast: Podcast) {
-        self.title = podcast.title
-        self.author = podcast.author
-        self.artworkURL = podcast.artworkURL
+        title = podcast.title
+        author = podcast.author
+        artworkURL = podcast.artworkURL
         dataManager.getEpisodes(forPodcastID: podcast.id, feedURL: podcast.feedURL) { episodes, error in
             guard error == nil else {
                 fatalError(error.debugDescription)
@@ -28,7 +28,7 @@ class PodcastDetailViewModel: ObservableObject {
             }
             self.episodes = episodes
         }
-        
+
         DispatchQueue.main.async {
             self.displayEpisodeList = true
         }

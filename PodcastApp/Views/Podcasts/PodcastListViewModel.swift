@@ -12,7 +12,7 @@ class PodcastListViewModel: ObservableObject {
     @Published var showOptions = false
     @Published var layout: GridLayout = .list
     @Published var showGrid = false
-    
+
     init(podcasts: [Podcast]?) {
         guard let podcasts = podcasts else {
             return

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct NowPlayingView: View {
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         ZStack {
             Color("nowPlayingBackgroundColor")
                 .edgesIgnoringSafeArea(.all)
-            
+
             VStack {
                 HStack {
                     Image(systemName: "chevron.down")
@@ -23,9 +23,9 @@ struct NowPlayingView: View {
                         .onTapGesture {
                             presentationMode.wrappedValue.dismiss()
                         }
-                    
+
                     Spacer()
-                    
+
                     Button(action: {}) {
                         Image(systemName: "list.triangle")
                             .font(.headline)
@@ -33,19 +33,17 @@ struct NowPlayingView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                 }.padding()
-                
+
                 Image("Cover")
                     .resizable()
                     .frame(width: 300, height: 300)
                     .cornerRadius(8.0)
-                
+
                 Text("Q&A com espectadores ao vivo")
                     .foregroundColor(.white)
                     .bold()
                     .padding()
-                
-                
-                
+
                 HStack {
                     Button(action: {}) {
                         Image(systemName: "gobackward.15")
@@ -53,7 +51,7 @@ struct NowPlayingView: View {
                             .foregroundColor(.white)
                     }
                     .buttonStyle(PlainButtonStyle())
-                    
+
                     Button(action: {}) {
                         Image(systemName: "play.circle.fill")
                             .font(.system(size: 90))
@@ -61,7 +59,7 @@ struct NowPlayingView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(.horizontal, 30)
-                    
+
                     Button(action: {}) {
                         Image(systemName: "goforward.30")
                             .font(.largeTitle)

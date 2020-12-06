@@ -5,12 +5,12 @@
 //  Created by Rafael Schmitt on 25/11/20.
 //
 
-import SwiftUI
 import KingfisherSwiftUI
+import SwiftUI
 
 struct PodcastDetail: View {
     @ObservedObject var viewModel: PodcastDetailViewModel
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -37,7 +37,7 @@ struct PodcastDetail: View {
                     }
                     .resizable()
                     .frame(width: 150, height: 150)
-                
+
                 VStack(alignment: .leading) {
                     Text(viewModel.title)
                         .font(.title)
@@ -49,11 +49,11 @@ struct PodcastDetail: View {
                         .padding(.top, 5)
                 }
                 .padding()
-                
+
                 Spacer()
             }
             .padding()
-            
+
             if viewModel.displayEpisodeList {
                 ScrollView {
                     LazyVStack {

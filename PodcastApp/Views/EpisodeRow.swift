@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EpisodeRow: View {
     @ObservedObject var viewModel: EpisodeRowViewModel
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -17,10 +17,10 @@ struct EpisodeRow: View {
                     .foregroundColor(.gray)
                     .bold()
                     .font(.footnote)
-                
+
                 Text(viewModel.title)
                     .padding(.top, 0.1)
-                
+
                 HStack {
                     if viewModel.isAvailableOffline {
                         Image(systemName: "checkmark")
@@ -31,7 +31,7 @@ struct EpisodeRow: View {
                             .foregroundColor(.gray)
                             .font(.footnote)
                     }
-                    
+
                     Text(viewModel.duration)
                         .foregroundColor(.gray)
                         .bold()
@@ -39,9 +39,9 @@ struct EpisodeRow: View {
                         .padding(.top, 0.1)
                 }
             }.padding(.leading)
-            
+
             Spacer()
-            
+
             Button(action: {
                 viewModel.play()
             }) {

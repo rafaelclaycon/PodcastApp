@@ -11,7 +11,7 @@ struct DiscoverView: View {
     let array = ["Peter", "Paul", "Mary", "Anna-Lena", "George", "John", "Greg", "Thomas", "Robert", "Bernie", "Mike", "Benno", "Hugo", "Miles", "Michael", "Mikel", "Tim", "Tom", "Lottie", "Lorrie", "Barbara"]
     @State private var searchText = ""
     @State private var showCancelButton: Bool = false
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -19,7 +19,7 @@ struct DiscoverView: View {
                     HStack {
                         Image(systemName: "magnifyingglass")
 
-                        TextField("Search", text: $searchText, onEditingChanged: { isEditing in
+                        TextField("Search", text: $searchText, onEditingChanged: { _ in
                             self.showCancelButton = true
                         }, onCommit: {
                             print("onCommit")
@@ -36,7 +36,7 @@ struct DiscoverView: View {
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(10.0)
 
-                    if showCancelButton  {
+                    if showCancelButton {
                         Button("Cancel") {
                             UIApplication.shared.endEditing(true) // This must be placed before the other commands here.
                             self.searchText = ""
@@ -47,10 +47,10 @@ struct DiscoverView: View {
                 }
                 .padding(.horizontal)
                 .navigationBarHidden(showCancelButton)
-                
+
                 List {
                     // Filtered list of names.
-                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
+                    ForEach(array.filter { $0.hasPrefix(searchText) || searchText == "" }, id: \.self) {
                         searchText in Text(searchText)
                     }
                 }

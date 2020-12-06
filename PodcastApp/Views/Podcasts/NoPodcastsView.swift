@@ -14,11 +14,11 @@ struct NoPodcastsView: View {
                 .font(.largeTitle)
                 .foregroundColor(.green)
                 .padding()
-            
+
             Text("No podcasts yet")
                 .font(.title)
                 .bold()
-            
+
             Text("Add podcasts by searching on the Discover tab.")
                 .multilineTextAlignment(.center)
                 .padding(20)

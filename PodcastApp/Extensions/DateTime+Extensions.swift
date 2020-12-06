@@ -13,7 +13,7 @@ extension Date {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: self)
     }
-    
+
     // Possibilities for dateStyle: .short, .medium, .long, .full
     func asFullString() -> String {
         let dateFormatter = DateFormatter()
@@ -28,11 +28,11 @@ extension Double {
         let hours = totalSeconds / 3600
         let minutes = (totalSeconds / 60) % 60
         let seconds = totalSeconds % 60
-        
+
         // Less than a minute
         if totalSeconds < 60 {
             return String(format: "%1ds", seconds)
-        // Less than an hour
+            // Less than an hour
         } else if totalSeconds < 3600 {
             // If "whole" minutes
             if (totalSeconds % 60) < 60 {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PodcastList: View {
     @ObservedObject var viewModel = PodcastListViewModel(podcasts: isRunningUnitTests ? nil : dataManager.podcasts)
-    
+
     var body: some View {
         NavigationView {
             if viewModel.showGrid {
@@ -36,8 +36,7 @@ struct PodcastList: View {
                                               .default(Text("Badges")),
                                               .default(Text("Share Podcasts")),
                                               .cancel(Text("Cancel"))])
-                    }
-                )
+                })
             } else {
                 NoPodcastsView()
                     .navigationBarTitle(Text("Podcasts 🎙"))

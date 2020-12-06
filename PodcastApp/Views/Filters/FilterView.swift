@@ -18,9 +18,9 @@ struct FilterView: View {
                             .frame(width: 20, height: 20)
                             .foregroundColor(.red)
                             .padding()
-                        
+
                         Text("New Releases")
-                        
+
                         Spacer()
                     }
                 }

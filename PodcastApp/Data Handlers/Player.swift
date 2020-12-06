@@ -5,8 +5,8 @@
 //  Created by Rafael Schmitt on 29/11/20.
 //
 
-import Foundation
 import AVFoundation
+import Foundation
 
 class Player: NSObject, AVAudioPlayerDelegate {
     enum Activity {
@@ -14,35 +14,37 @@ class Player: NSObject, AVAudioPlayerDelegate {
         case playing
         case paused
     }
+
     struct State {
         var currentTime: TimeInterval
         var duration: TimeInterval
         var activity: Activity
     }
+
     private var audioPlayer: AVAudioPlayer
     private var timer: Timer?
-    private var update: (State?) -> ()
-    
-    init?(url: URL, update: @escaping (State?) -> ()) {
+    private var update: (State?) -> Void
+
+    init?(url: URL, update: @escaping (State?) -> Void) {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             return nil
         }
-        
+
         if let player = try? AVAudioPlayer(contentsOf: url) {
             audioPlayer = player
             self.update = update
         } else {
             return nil
         }
-        
+
         super.init()
-        
+
         audioPlayer.delegate = self
     }
-    
+
     func togglePlay() {
         if audioPlayer.isPlaying {
             audioPlayer.pause()
@@ -60,21 +62,21 @@ class Player: NSObject, AVAudioPlayerDelegate {
             }
         }
     }
-    
+
     var state: Player.State {
         return State(currentTime: audioPlayer.currentTime, duration: audioPlayer.duration, activity: activity)
     }
-    
+
     func notify() {
         update(state)
     }
-    
+
     func setProgress(_ time: TimeInterval) {
         audioPlayer.currentTime = time
         notify()
     }
-    
-    func audioPlayerDidFinishPlaying(_ pl: AVAudioPlayer, successfully flag: Bool) {
+
+    func audioPlayerDidFinishPlaying(_: AVAudioPlayer, successfully flag: Bool) {
         timer?.invalidate()
         timer = nil
         if flag {
@@ -83,24 +85,24 @@ class Player: NSObject, AVAudioPlayerDelegate {
             update(nil)
         }
     }
-    
+
     var duration: TimeInterval {
         return audioPlayer.duration
     }
-    
+
     var activity: Activity {
         return audioPlayer.isPlaying ? .playing : isPaused ? .paused : .stopped
     }
-    
+
     var isPaused: Bool {
         return !audioPlayer.isPlaying && audioPlayer.currentTime > 0
     }
-    
+
     func cancel() {
         audioPlayer.stop()
         timer?.invalidate()
     }
-    
+
     deinit {
         cancel()
     }
