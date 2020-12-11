@@ -39,43 +39,66 @@ class DataManager {
         }
     }
 
-    func play(episode: Episode) {
-        if episode.localFilePath != nil {
-            guard let url = URL(string: episode.localFilePath!) else {
-                fatalError()
-            }
+    fileprivate func playLocalFile(_ episode: Episode) {
+//        print("Local file path name: \(episode.localFilePath!)")
+        
+//        do {
+//            let documentsFolderString = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).absoluteString
+//            print(documentsFolderString)
+//            let newString = documentsFolderString.replacingOccurrences(of: "file://", with: "")
+//            print(newString)
+//            let documentsFolderURL = URL(string: newString)
+//            let episodeURL = documentsFolderURL!.appendingPathComponent("Podcasts/\(episode.podcastID)/").appendingPathComponent(episode.localFilePath!)
+            
+            let path = Bundle.main.path(forResource: "PodcastPraiadosOssosTrailer.mp3", ofType: nil)!
+            let url = URL(fileURLWithPath: path)
+            
+            print(url)
+            
             player = Player(url: url, update: { state in
                 print(state?.activity as Any)
             })
-        } else {
-            FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: episode.podcastID, episodeID: episode.id) { [weak self] filePath, error in
-                guard let strongSelf = self else {
-                    return
-                }
-                
-                guard error == nil else {
-                    fatalError()
-                }
-                guard filePath != nil else {
-                    fatalError()
-                }
-                
-                // Seizes the opportunity to save the local file path onto the episode.
-                do {
-                    try strongSelf.updateLocalFilePath(forEpisode: episode, with: filePath!)
-                } catch {
-                    fatalError(error.localizedDescription)
-                }
-                
-                guard let url = URL(string: filePath!) else {
-                    fatalError()
-                }
-                player = Player(url: url, update: { state in
-                    //print(state?.activity as Any)
-                })
-
-                player?.togglePlay()
+            
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+    }
+    
+    fileprivate func fetchAndPlayRemoteFile(_ episode: Episode) {
+        FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: episode.podcastID, episodeID: episode.id) { [weak self] filePath, error in
+            guard let strongSelf = self else {
+                return
             }
+            guard error == nil else {
+                fatalError()
+            }
+            guard filePath != nil else {
+                fatalError()
+            }
+            guard let url = URL(string: filePath!) else {
+                fatalError()
+            }
+            
+            // Seizes the opportunity to save the local file path onto the episode.
+            do {
+                try strongSelf.updateLocalFilePath(forEpisode: episode, with: url.lastPathComponent)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+            
+            player = Player(url: url, update: { state in
+                //print(state?.activity as Any)
+            })
+            
+            player?.togglePlay()
+        }
+    }
+    
+    fileprivate func play(episode: Episode) {
+        if episode.localFilePath != nil {
+            playLocalFile(episode)
+        } else {
+            fetchAndPlayRemoteFile(episode)
         }
     }
 

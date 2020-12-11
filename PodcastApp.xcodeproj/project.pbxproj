@@ -27,6 +27,7 @@
 		D979F654257D162400011B64 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D979F653257D162400011B64 /* NowPlayingView.swift */; };
 		D97F448F2571997100ED4DAD /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F448E2571997100ED4DAD /* GridLayout.swift */; };
 		D99323422576931E00DB9A72 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99323412576931E00DB9A72 /* DataManagerTests.swift */; };
+		D9CA71F625838BF9003D8A17 /* PodcastPraiadosOssosTrailer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA71F525838BF9003D8A17 /* PodcastPraiadosOssosTrailer.mp3 */; };
 		D9D3DB7F256E7BC00035560E /* PodcastAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB7E256E7BC00035560E /* PodcastAppApp.swift */; };
 		D9D3DB81256E7BC00035560E /* PodcastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3DB80256E7BC00035560E /* PodcastList.swift */; };
 		D9D3DB83256E7BC30035560E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D3DB82256E7BC30035560E /* Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		D979F653257D162400011B64 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		D97F448E2571997100ED4DAD /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		D99323412576931E00DB9A72 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		D9CA71F525838BF9003D8A17 /* PodcastPraiadosOssosTrailer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PodcastPraiadosOssosTrailer.mp3; sourceTree = "<group>"; };
 		D9D3DB7B256E7BC00035560E /* PodcastApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9D3DB7E256E7BC00035560E /* PodcastAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAppApp.swift; sourceTree = "<group>"; };
 		D9D3DB80256E7BC00035560E /* PodcastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastList.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		D9D3DBC8256E96FD0035560E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9CA71F525838BF9003D8A17 /* PodcastPraiadosOssosTrailer.mp3 */,
 				D9D3DB82256E7BC30035560E /* Assets.xcassets */,
 				D9D3DBD3256E9B540035560E /* podcasts.json */,
 			);
@@ -361,6 +364,7 @@
 			files = (
 				D9D3DBD4256E9B540035560E /* podcasts.json in Resources */,
 				D9D3DB83256E7BC30035560E /* Assets.xcassets in Resources */,
+				D9CA71F625838BF9003D8A17 /* PodcastPraiadosOssosTrailer.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
