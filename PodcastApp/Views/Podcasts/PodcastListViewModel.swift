@@ -19,7 +19,7 @@ class PodcastListViewModel: ObservableObject {
         }
         self.podcasts = podcasts
         self.podcasts?.sort {
-            $0.title.folding(options: .diacriticInsensitive, locale: .current) < $1.title.folding(options: .diacriticInsensitive, locale: .current)
+            $0.title.localizedStandardCompare($1.title) == .orderedAscending
         }
         showGrid = true
     }
