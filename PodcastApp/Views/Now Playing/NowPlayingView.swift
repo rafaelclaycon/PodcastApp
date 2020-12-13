@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NowPlayingView: View {
     @Environment(\.presentationMode) var presentationMode
+    let artworkSize: CGFloat = 355
 
     var body: some View {
         ZStack {
@@ -23,6 +24,15 @@ struct NowPlayingView: View {
                         .onTapGesture {
                             presentationMode.wrappedValue.dismiss()
                         }
+                    
+                    Text("Now Playing")
+                        .foregroundColor(.white)
+                        .bold()
+                    
+                    Text("Notes")
+                        .foregroundColor(.gray)
+                        .bold()
+                        .padding(.leading, 7)
 
                     Spacer()
 
@@ -32,17 +42,30 @@ struct NowPlayingView: View {
                             .foregroundColor(.white)
                     }
                     .buttonStyle(PlainButtonStyle())
-                }.padding()
+                    .padding(.trailing)
+                }
+                .padding(.horizontal, 5)
+                .padding(.bottom, 20)
 
                 Image("Cover")
                     .resizable()
-                    .frame(width: 300, height: 300)
+                    .frame(width: artworkSize, height: artworkSize)
                     .cornerRadius(8.0)
 
-                Text("Q&A com espectadores ao vivo")
-                    .foregroundColor(.white)
-                    .bold()
-                    .padding()
+                VStack {
+                    Text("Q&A com espectadores ao vivo")
+                        .foregroundColor(.white)
+                        .bold()
+                        .padding(.bottom, 0.1)
+
+                    Text("The Vergecast")
+                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                }
+                .padding()
+                
+                SeekBar()
+                    .padding(.bottom, 25)
 
                 HStack {
                     Button(action: {}) {
@@ -67,6 +90,9 @@ struct NowPlayingView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
+                
+                NowPlayingToolbar()
+                    .padding(.top, 30)
             }
         }
     }
