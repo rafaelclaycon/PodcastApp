@@ -19,7 +19,7 @@ struct PodcastDetail: View {
                     .frame(height: 100)
                 Spacer()
             }
-            
+
             VStack(alignment: .leading) {
                 // Header
                 HStack {
@@ -77,7 +77,7 @@ struct PodcastDetail: View {
                 } else {
                     VStack(alignment: .center) {
                         Spacer()
-                        HStack() {
+                        HStack {
                             Spacer()
                             Text("No Episodes")
                             Spacer()

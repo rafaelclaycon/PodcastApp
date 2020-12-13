@@ -39,9 +39,9 @@ class DataManager {
         }
     }
 
-    fileprivate func playLocalFile(_ episode: Episode) {
+    private func playLocalFile(_: Episode) {
 //        print("Local file path name: \(episode.localFilePath!)")
-        
+
 //        do {
 //            let documentsFolderString = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).absoluteString
 //            print(documentsFolderString)
@@ -49,22 +49,22 @@ class DataManager {
 //            print(newString)
 //            let documentsFolderURL = URL(string: newString)
 //            let episodeURL = documentsFolderURL!.appendingPathComponent("Podcasts/\(episode.podcastID)/").appendingPathComponent(episode.localFilePath!)
-            
-            let path = Bundle.main.path(forResource: "PodcastPraiadosOssosTrailer.mp3", ofType: nil)!
-            let url = URL(fileURLWithPath: path)
-            
-            print(url)
-            
-            player = Player(url: url, update: { state in
-                print(state?.activity as Any)
-            })
-            
+
+        let path = Bundle.main.path(forResource: "PodcastPraiadosOssosTrailer.mp3", ofType: nil)!
+        let url = URL(fileURLWithPath: path)
+
+        print(url)
+
+        player = Player(url: url, update: { state in
+            print(state?.activity as Any)
+        })
+
 //        } catch {
 //            print(error.localizedDescription)
 //        }
     }
-    
-    fileprivate func fetchAndPlayRemoteFile(_ episode: Episode) {
+
+    private func fetchAndPlayRemoteFile(_ episode: Episode) {
         FeedHelper.fetchEpisodeFile(streamURL: episode.remoteURL, podcastID: episode.podcastID, episodeID: episode.id) { [weak self] filePath, error in
             guard let strongSelf = self else {
                 return
@@ -78,23 +78,23 @@ class DataManager {
             guard let url = URL(string: filePath!) else {
                 fatalError()
             }
-            
+
             // Seizes the opportunity to save the local file path onto the episode.
             do {
                 try strongSelf.updateLocalFilePath(forEpisode: episode, with: url.lastPathComponent)
             } catch {
                 fatalError(error.localizedDescription)
             }
-            
-            player = Player(url: url, update: { state in
-                //print(state?.activity as Any)
+
+            player = Player(url: url, update: { _ in
+                // print(state?.activity as Any)
             })
-            
+
             player?.togglePlay()
         }
     }
-    
-    fileprivate func play(episode: Episode) {
+
+    private func play(episode: Episode) {
         if episode.localFilePath != nil {
             playLocalFile(episode)
         } else {
@@ -119,7 +119,7 @@ class DataManager {
         guard let podcastIndex = podcasts?.firstIndex(where: { $0.id == podcastID }) else {
             throw DataManagerError.podcastIDNotFound
         }
-        
+
         if podcasts![podcastIndex].episodes == nil {
             podcasts![podcastIndex].episodes = [Episode]()
         }
@@ -134,14 +134,14 @@ class DataManager {
         guard let podcast = podcasts?.first(where: { $0.id == podcastID }) else {
             return
         }
-        
+
         // 1. First tries to get the episodes from memory.
         if let episodes = podcast.episodes, episodes.count > 0 {
             print("IN-MEMORY FETCH: podcast \(podcastID)")
             completionHandler(episodes, nil)
             return
         }
-        
+
         do {
             let localEpisodes = try storage!.getAllEpisodes(forID: podcastID)
 
@@ -154,11 +154,11 @@ class DataManager {
                 } catch {
                     print(error.localizedDescription)
                 }
-                
-            // 3. If that fails, tries to get them from the podcast's hosting server.
+
+                // 3. If that fails, tries to get them from the podcast's hosting server.
             } else {
                 print("REMOTE FETCH: podcast \(podcastID)")
-                
+
                 FeedHelper.fetchEpisodeList(feedURL: feedURL) { [weak self] result, error in
                     guard let strongSelf = self else {
                         return
@@ -202,14 +202,14 @@ class DataManager {
             print(error.localizedDescription)
         }
     }
-    
+
     func updateLocalFilePath(forEpisode episode: Episode, with filePath: String) throws {
         // Update it on the in-memory array.
         try updateInMemoryEpisodeLocalFilePath(podcastID: episode.podcastID, episodeID: episode.id, filePath: filePath)
         // Update it on the database.
         storage!.updateLocalFilePath(forEpisode: episode.id, with: filePath)
     }
-    
+
     private func updateInMemoryEpisodeLocalFilePath(podcastID: Int, episodeID: String, filePath: String) throws {
         guard podcasts != nil else {
             throw DataManagerError.podcastArrayIsUninitialized

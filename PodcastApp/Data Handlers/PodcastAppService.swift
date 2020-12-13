@@ -9,7 +9,7 @@ import Foundation
 
 class PodcastAppService {
     static func getPodcasts() -> [Podcast] {
-        return load("podcasts.json")
+        load("podcasts.json")
     }
 
     private static func load<T: Decodable>(_ filename: String) -> T {

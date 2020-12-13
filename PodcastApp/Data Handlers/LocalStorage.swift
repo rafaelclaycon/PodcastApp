@@ -68,7 +68,7 @@ class LocalStorage {
     // MARK: - Podcast
 
     func getPodcastCount() throws -> Int {
-        return try db.scalar(podcasts.count)
+        try db.scalar(podcasts.count)
     }
 
     func insert(podcast: Podcast) throws {
@@ -92,7 +92,7 @@ class LocalStorage {
     // MARK: - Episode
 
     func getEpisodeCount() throws -> Int {
-        return try db.scalar(episodes.count)
+        try db.scalar(episodes.count)
     }
 
     func insert(episode: Episode) throws {
@@ -115,7 +115,7 @@ class LocalStorage {
     func deleteAllEpisodes() throws {
         try db.run(episodes.delete())
     }
-    
+
     func updateLocalFilePath(forEpisode episodeID: String, with filePath: String) {
         let id = Expression<String>("id")
         let episode = episodes.filter(id == episodeID)

@@ -64,7 +64,7 @@ class Player: NSObject, AVAudioPlayerDelegate {
     }
 
     var state: Player.State {
-        return State(currentTime: audioPlayer.currentTime, duration: audioPlayer.duration, activity: activity)
+        State(currentTime: audioPlayer.currentTime, duration: audioPlayer.duration, activity: activity)
     }
 
     func notify() {
@@ -87,15 +87,15 @@ class Player: NSObject, AVAudioPlayerDelegate {
     }
 
     var duration: TimeInterval {
-        return audioPlayer.duration
+        audioPlayer.duration
     }
 
     var activity: Activity {
-        return audioPlayer.isPlaying ? .playing : isPaused ? .paused : .stopped
+        audioPlayer.isPlaying ? .playing : isPaused ? .paused : .stopped
     }
 
     var isPaused: Bool {
-        return !audioPlayer.isPlaying && audioPlayer.currentTime > 0
+        !audioPlayer.isPlaying && audioPlayer.currentTime > 0
     }
 
     func cancel() {

@@ -23,7 +23,7 @@ class PodcastDetailViewModel: ObservableObject {
                 return print("Episodes is empty.")
             }
             self.episodes = episodes
-            
+
             DispatchQueue.main.async {
                 self.displayEpisodeList = episodes.count > 0
             }

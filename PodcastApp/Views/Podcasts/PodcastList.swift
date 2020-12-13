@@ -36,7 +36,7 @@ struct PodcastList: View {
                                               .default(Text("Badges")),
                                               .default(Text("Share Podcasts")),
                                               .cancel(Text("Cancel"))])
-                })
+                    })
             } else {
                 NoPodcastsView()
                     .navigationBarTitle(Text("Podcasts 🎙"))
