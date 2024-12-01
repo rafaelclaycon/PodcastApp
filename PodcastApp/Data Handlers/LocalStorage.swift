@@ -8,6 +8,8 @@
 import Foundation
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 class LocalStorage {
     private var db: Connection
     private var podcasts = Table("podcasts")
